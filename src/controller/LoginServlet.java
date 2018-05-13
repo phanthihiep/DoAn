@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.Member;
 import model.bo.LoginBO;
+import model.dao.LoginDAO;
 
 /**
  * Servlet implementation class LoginServlet
@@ -19,43 +20,36 @@ import model.bo.LoginBO;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
+	public LoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
 		LoginBO loginBO = new LoginBO();
+		//LoginDAO loginDAO = new LoginDAO();
 		try {
-			if(loginBO.checkLogin(name, pass)){
+			if (loginBO.checkLogin(name, pass)) {
 				Member member = new Member();
 				member = loginBO.getNameRestaurant(name);
+				
 				HttpSession session = request.getSession();
-				session.setAttribute("user", name);
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
-			}else {
+				session.setAttribute("user", member);
+				/*member = loginDAO.getRoleID(roleID);*/
+				request.getRequestDispatcher("/customer.jsp").forward(request, response);
+			} else {
 				String error = "Dang nhap that bai";
 				request.setAttribute("error", error);
-				request.getRequestDispatcher("/customer.jsp").forward(request, response);
+				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

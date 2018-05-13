@@ -7,6 +7,14 @@ public class Member {
 	private String address;
 	private String phone;
 	private String email;
+	private int roleId;
+	
+	public int getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
 	public String getMaTV() {
 		return maTV;
 	}

@@ -53,7 +53,7 @@ public class FoodDAO {
 			return list;
 		}
 		
-		public static void mani(String args[]){
+		public static void main(String args[]){
 			FoodDAO f = new FoodDAO();
 			ArrayList<Food> l = f.getListFood();
 			for(Food s : l){
