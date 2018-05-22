@@ -1,24 +1,33 @@
 package model.bean;
 
 public class Member {
-	private String maTV;
+	
+	private int maTV;
 	private String nameMember;
 	private String password;
 	private String address;
 	private String phone;
 	private String email;
 	private int roleId;
+	private String nameLogin;
 	
+	public String getNameLogin() {
+		return nameLogin;
+	}
+	public void setNameLogin(String nameLogin) {
+		this.nameLogin = nameLogin;
+	}
 	public int getRoleId() {
 		return roleId;
 	}
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
-	public String getMaTV() {
+
+	public int getMaTV() {
 		return maTV;
 	}
-	public void setMaTV(String maTV) {
+	public void setMaTV(int maTV) {
 		this.maTV = maTV;
 	}
 	public String getNameMember() {

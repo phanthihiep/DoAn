@@ -1,4 +1,5 @@
 
+<%@page import="model.bean.Food"%>
 <%@page import="model.bean.NhaHang"%>
 <%@page import="model.bean.Memb"%>
 <%@ page import="java.util.ArrayList"%>
@@ -9,7 +10,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Restaurant</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="keywords" content="Spicy Bite Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
@@ -38,6 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <%
 	NhaHang nhaHang = (NhaHang)request.getAttribute("nhahang");
+	Food food =(Food) request.getAttribute("food");
 %>
 	<div>
 		<div><br><br>
@@ -61,7 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								href="customer.jsp">Trang chủ</a></li>
 							<li><a class="scroll hvr-underline-from-center"
 								href="#about">Thông tin</a></li>
-							<li><a class="scroll hvr-underline-from-center" href="/MenuServlet?IdNH=<%=nhaHang.getId()%>">Menu</a>
+							<li><a class="scroll hvr-underline-from-center" href="#menu">Menu</a>
 							</li>
 							<li><a class="scroll hvr-underline-from-center" href="#team">Hình
 									ảnh</a></li>
@@ -97,31 +99,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<img src="images/about.jpg" class="img-responsive" alt="" />
 				</div> -->
 				<div class="col-md-6 banner-btm-g2">
-					<center><h3 class="title-main">Thêm Món Ăn Vào Menu </h3></center>
-					<form action="AddMenuServlet" method="post">
-					<h4 class="sub-title">Mã Nhà Hàng:<input type="text" class="form-control" name="Id"  value="<%=nhaHang.getId()%>" required />  </h4>
+					<center><h3 class="title-main">Sửa Thông Tin Món Ăn Trong Menu </h3></center>
+					
+					<form action="EditFoodServlet" method="post">
+					<h4 class="sub-title">Mã Nhà Hàng:<%=food.getIdNH()%> </h4>
+					<h4 class="sub-title">Mã Món Ăn: <input type="text" name="id" value="<%=food.getId()%>" readonly/> </h4> 
 				        <div class="row form-group">
 				            <label class="col-lg-3" style="color: white;">Tên Món Ăn :</label>
 				            <div class="col-lg-4">
-				                <input type="text" class="form-control" name="ten" required/>
+				                <input type="text" class="form-control" name="ten" value="<%=food.getNameFood()%>" required/>
 				            </div>
 				        </div>
 				        <div class="row form-group">
 				            <label class="col-lg-3" style="color: white;">Giá:</label>
 				            <div class="col-lg-4">
-				                <input type="text" class="form-control" name="gia" required/>
+				                <input type="text" class="form-control" name="gia" value="<%=food.getPrice()%>" required/>
 				            </div>
 				        </div>
 				        <div class="row form-group">
 				            <label class="col-lg-3" style="color: white;">Hình Ảnh:</label>
 				            <div class="col-lg-4">
-				                <input type="file" class="form-control" name="hinhanh" required/>
+				                <input type="file" class="form-control" name="hinhanh" value="<%=food.getPicture()%>" required/>
 				            </div>
 				        </div>
 				      
 				        <div class="row form-group">
 				            <div class="col-lg-4 col-lg-offset-3">
-				                <button class="btn btn-primary" type="submit" value="submit" name="submit">Thêm mới</button>
+				                <button class="btn btn-primary" type="submit" value="submit" name="submit">Cập nhật</button>
 				                <input class="btn btn-primary" type="button" value="Quay lại" onclick="history.go(-1);" />
 				            </div>
 				        </div>

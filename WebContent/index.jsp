@@ -42,7 +42,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
 							</button>
-
 						</div>
 						<!-- navbar-header -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -56,17 +55,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<button data-toggle="modal" data-target="#myModal2" >Đăng ký</button>
 									</div>
 								</li>
-								
 							</ul>
 						</div>
-
-
 						<div class="clearfix"> </div>
 					</nav>
 					<div class="clearfix"> </div>
 				</div>
 			</div>
-			<!-- //menu -->
 			<!-- banner -->
 			<div class="container">
 				<div class="banner-top">
@@ -82,20 +77,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="fa fa-cutlery" aria-hidden="true"></span>
 							<span class="sub-title"></span>
 						</div>
-						<p>make your kinda meal
-							<p>
-
+						<p>make your kinda meal<p>
 					</div>
 				</div>
-
-			</div>
-
-			<div class="clearfix"> </div>
+			</div><div class="clearfix"> </div>
 		</div>
 	</div>
-	
-	<!-- about -->
-	
 	<div class="footer-cpy text-center">
 		<div class="social_banner">
 			<ul class="social_list">
@@ -141,11 +128,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="modal-body"> 
 							<center><img src="images/m1.jpg" alt="" class="img-responsive" /></center>
 						<form action="LoginServlet" method="post">
-						    <label for="fname">Tên đăng nhập</label>
-						    <input type="text" id="fname" name="name" placeholder="Tên đăng nhập..">
+						    <label for="fname">Số điện thoại</label>
+						    <input type="text" id="fname" name="name" placeholder="Số điện thoại.." required>
 						
 						    <label for="lname">Mật khẩu</label>
-						    <input type="password" id="lname" name="pass" placeholder="Mật khẩu..">
+						    <input type="password" id="lname" name="pass" placeholder="Mật khẩu.." required>
 						    <% if(request.getAttribute("error") != null){ %>
 							<b style="color:red"><%=request.getAttribute("error")%></b>
 							<%} %>
@@ -173,24 +160,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="modal-body"> 
 						<form action="RegisterServlet" method="post">
-						    <label for="fname">Mã Thành Viên</label>
-						    <input type="text" id="fname" name="matv" placeholder="Mã thành viên..">
-						
-						    <label for="lname">Tên Nhà Hàng</label>
-						    <input type="text" id="lname" name="name1" placeholder="Tên nhà hàng..">
+						    <label for="lname">Họ Tên:</label>
+						    <input type="text" id="lname" name="name1" placeholder="Họ tên.." required>
 						    <label for="lname">Mật khẩu</label>
-						    <input type="text" id="lname" name="pass1" placeholder="Mật khẩu đăng nhập..">
-						    <label for="fname">Địa chỉ</label>
-						    <input type="text" id="fname" name="address" placeholder="Địa chỉ..">
+						    <input type="text" id="lname" name="pass1" placeholder="Mật khẩu đăng nhập.." required>
 						    <label for="sel1">Bạn là :</label>
 						    <select class="form-control" name="role" id="role">
 						        <option value="1">Khách hàng</option>
 						        <option value="2">Nhà hàng</option>
 						      </select>
 						    <label for="lname">Số điện thoại</label>
-						    <input type="text" id="lname" name="sdt" placeholder="Số điện thoại..">
-						    <label for="lname">Email</label>
-						    <input type="text" id="lname" name="email" placeholder="Email..">
+						    <input type="text" id="lname" name="sdt" placeholder="Số điện thoại.." required>
 						    <div class="text-center">
 								<button type="submit" class="btn" onclick="alert('Đăng ký thành công')"> Đăng ký </button>
 							</div><br>

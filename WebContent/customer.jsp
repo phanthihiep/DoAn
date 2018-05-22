@@ -1,3 +1,7 @@
+<%@page import="model.bean.NhaHang"%>
+<%@page import="model.bean.Memb"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.bean.InformationRestaurant"%>
 <%@page import="model.bean.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -33,8 +37,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
+<%if(session.getAttribute("user") != null){  
+	Memb member = (Memb) session.getAttribute("user");
+	NhaHang nh = (NhaHang) session.getAttribute("nhahang");
+	if(member.getRoleId()==2){ %>
 	<div class="agile-banner-main" id="home">
-		<div class="banner-layer">
+		<div class="banner-layer"><%}
+	else if(member.getRoleId()==1){%>
+		<div>
+		<div><br><br><%} %>
 			<div class="header-main">
 				<div class="container">
 					<nav class="navbar navbar-default">
@@ -52,9 +63,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							
 							<ul class="nav navbar-nav navbar-right">
 							<!-- Restaurant -->
-								 <%if(session.getAttribute("user") != null){  
-								 Member member = (Member) session.getAttribute("user");
-								 if(member.getRoleId()==2){
+								 
+								 <%if(member.getRoleId()==2){
 								  %> 
 								<li class="scroll hvr-underline-from-center">
 									<a href="index.html">Trang chủ</a>
@@ -63,7 +73,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<a class="scroll hvr-underline-from-center" href="#about">Thông tin</a>
 								</li>
 								<li>
-									<a class="hvr-underline-from-center" href="/MenuServlet">Menu</a>
+									<a class="hvr-underline-from-center" href="/MenuServlet?IdNH=<%=nh.getId()%>">Menu</a>
 								</li>
 								<li>
 									<a class="scroll hvr-underline-from-center" href="#team">Hình ảnh</a>
@@ -77,18 +87,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li>
 									<a class="scroll hvr-underline-from-center" href="#about">Thông tin</a>
 								</li> 
-								<%} }%>
+								<%}%>
 							</ul>
 							
 							
 							<ul class="list-right">
 								<li>
-									<%if(session.getAttribute("user") != null){ %> 
 									<a href="/LogoutServlet" class="fas fa-sign-out-alt" aria-hidden="true"></a>
-								    	<% Member member = (Member) session.getAttribute("user");
-								    %>
-								    <i style="color: white;">Xin chào ! <%=member.getMaTV()%></i>
-								    <% } %>
+								    <i style="color: white;">Xin chào ! <%=member.getTen()%></i>
 								</li>
 							</ul>
 						</div>
@@ -101,6 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<!-- //menu -->
 			<!-- banner -->
+			<%if(member.getRoleId()==2){ %>
 			<div class="container">
 				<div class="banner-top">
 					<div class="banner-info">
@@ -115,19 +122,99 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<span class="fa fa-cutlery" aria-hidden="true"></span>
 							<span class="sub-title"></span>
 						</div>
-						<p>make your kinda meal
-							<p>
-
+						<p>make your kinda meal<p>
 					</div>
 				</div>
-
-			</div>
-
+			</div><%} %>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-	
+	<%} %>
 	<!-- about -->
+	<%if(session.getAttribute("user") != null){  
+		 Memb member = (Memb) session.getAttribute("user");
+		 if(member.getRoleId()==1){
+		  %> 
+		<br><div class="section main-menu" id="menu">
+		<div class="container">
+			<div class="main-menu-bg">
+				<h3 class="w3layouts-title text-center">List Restaurants</h3>
+				<div class="menu-info">
+					<ul class="nav nav-tabs" role="tablist">
+						<div >
+						    <form action="/action_page.php">
+						      <input type="text" placeholder="Nhập thành phố.." name="search" style="width: 400px">
+						      <button type="submit"><i class="fa fa-search"></i></button>
+						    </form>
+						  </div>
+					</ul>
+				</div>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="testi">
+						<div class="col-md-12 agileinfo-tab-content1">
+							<div class="menu-text-right1">
+							<%-- <% ArrayList<Member> list = (ArrayList<Member>) session.getAttribute("listMember");
+								for(int i=0; i< list.size();i++){
+									Member mb = list.get(i);
+							%> --%>
+								<div class="menu-title">
+									<div class="col-md-12 col-sm-12 col-xs-12 test" >
+										<div class="col-sm-3" >
+											<div class="linkNH" style="padding: 11px">
+												<img src="images/g3.jpg" alt="Image" style="max-width:100%;">
+												<div class="linkName" style="padding-bottom: 10px">
+												<h4><a><%-- <%=mb.getNameMember() %> --%>hhhhhhhhhhhhhhhhhhh</a> </h4> 
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-3" >
+											<div class="linkNH" style="padding: 11px">
+												<img src="images/g3.jpg" alt="Image" style="max-width:100%;">
+												<div class="linkName" style="padding-bottom: 10px">
+												<h4><a><%-- <%=mb.getNameMember() %> --%>hhhhhhhhhhhhhhhhhhh</a> </h4> 
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-3" >
+											<div class="linkNH" style="padding: 11px">
+												<img src="images/g3.jpg" alt="Image" style="max-width:100%;">
+												<div class="linkName" style="padding-bottom: 10px">
+												<h4><a><%-- <%=mb.getNameMember() %> --%>hhhhhhhhhhhhhhhhhhh</a> </h4> 
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-3" >
+											<div class="linkNH" style="padding: 11px">
+												<img src="images/g3.jpg" alt="Image" style="max-width:100%;">
+												<div class="linkName" style="padding-bottom: 10px">
+												<h4><a><%-- <%=mb.getNameMember() %> --%>hhhhhhhhhhhhhhhhhhh</a> </h4> 
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-3" >
+											<div class="linkNH" style="padding: 11px">
+												<img src="images/g3.jpg" alt="Image" style="max-width:100%;">
+												<div class="linkName" style="padding-bottom: 10px">
+												<h4><a><%-- <%=mb.getNameMember() %> --%>hhhhhhhhhhhhhhhhhhh</a> </h4> 
+												</div>
+											</div>
+										</div>
+										
+									</div>
+							<%-- <%} %> --%>
+								</div>
+							</div>
+						</div><div class="clearfix"></div>
+					</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	  <% }
+	else if(member.getRoleId()==2){
+		NhaHang info =(NhaHang) request.getAttribute("info");
+	%>
 	<div class="section w3ls-banner-btm-main" id="about">
 		<div class="container">
 			<div class="banner-btm">
@@ -135,13 +222,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<img src="images/about.jpg" class="img-responsive" alt="" />
 				</div>
 				<div class="col-md-6 banner-btm-g2">
-					<h3 class="title-main">Tên Nhà Hàng </h3>
+					<h3 class="title-main">Tên Nhà Hànd</h3>
 					<h4 class="sub-title">Giới thiệu về nhà hàng.</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae nunc auctor, malesuada est eu, pellentesque nisi.
-						Nam in enim lacinia, hendrerit neque non, placerat quam.Mauris eu tortor congue purus congue iaculis sit amet tincidunt
-						neque. Aliquam suscipit nisi erat, non ultricies ex aliquet a.
-
-					</p>
+					<%-- <% if(info.getDescribe() != null) { %>
+					<p><%= info.getDescribe() %></p>
+					<% } %> --%>
 					<div class="find-about">
 						<a href="#" data-toggle="modal" data-target="#myModal">Chỉnh sửa thông tin</a>
 					</div>
@@ -150,7 +235,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-	
 	<!-- //testimonials -->
 	
 	<div class="menu-agileits_w3layouts section">
@@ -220,12 +304,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="time">
 				<h5>Monday – Friday </h5>
-				<p>9:00 AM – 11:00 PM</p>
+				<p></p>
 				<h5>Saturday – Sunday </h5>
-				<p>8:00 AM – 00:00 AM</p>
+				<p></p>
 			</div>
 		</div>
 	</div>
+			
+	<%} }%>
 	
 	<div class="footer-cpy text-center">
 		<div class="social_banner">
@@ -263,6 +349,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 	<!-- Tooltip -->
+	<% Memb member = (Memb) session.getAttribute("user");
+	if(member.getRoleId() == 2) {
+	NhaHang info =(NhaHang) request.getAttribute("info");
+	%>
 	<div class="tooltip-content">
 		<div class="modal fade features-modal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
 			<div class="modal-dialog modal-md">
@@ -277,19 +367,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="text-right">
 								<button type="button" class="btn" > Chọn ảnh </button>
 						</div>
-						<h4>Tên Nhà Hàng</h4>
-						 <form>
+						<h4>Thành Viên: ></h4>
+						<h4></h4>
+						 <form action="UpdateInfoServlet" method="post">
 						    <div class="form-group">
 						      <label for="comment">Giới thiệu về nhà hàng:</label>
-						      <textarea class="form-control" rows="5" id="comment"></textarea>
+						      <%-- <%if(info.getDescribe() == null) { %> --%>
+						      <textarea class="form-control" rows="5" id="comment" placeholder="Chưa có thông tin" name="introduction" value=""></textarea>
+						     <%--  <% } else { %> --%>
+						       <textarea class="form-control" rows="5" id="comment" name="introduction" value=""></textarea>
+						     <%--  <% } %> --%>
 						      <label for="fname">Thời gian đóng - mở cửa Thứ 2 - Thứ 6</label>
-							    <input type="text" id="fname" name="name" placeholder="Thời gian..">
+							    <input type="text" id="fname" name="time" placeholder="Thời gian.." value="">
 							
 							    <label for="lname">Thời gian đóng - mở cửa Thứ 7 - Chủ nhật</label>
-							    <input type="text" id="lname" name="pass" placeholder="Thời gian..">
+							    <input type="text" id="lname" name="time1" placeholder="Thời gian.." value="">
 						    </div>
 						    <div class="text-center">
-								<button type="button" class="btn" > Cập nhật </button>
+								<button type="submit" class="btn" > Cập nhật </button>
 							</div><br>
 						  </form>
 					</div>
@@ -297,6 +392,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
+	<% } %>
 	<!-- //Tooltip -->
 
 	<!-- js -->

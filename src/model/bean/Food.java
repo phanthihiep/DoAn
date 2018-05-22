@@ -1,15 +1,24 @@
 package model.bean;
 
 public class Food {
-	private String maTV;
+	private int id;
 	private String nameFood;
 	private String price;
 	private String picture;
-	public String getMaTV() {
-		return maTV;
+	private int idNH;
+	
+	
+	public int getId() {
+		return id;
 	}
-	public void setMaTV(String maTV) {
-		this.maTV = maTV;
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getIdNH() {
+		return idNH;
+	}
+	public void setIdNH(int idNH) {
+		this.idNH = idNH;
 	}
 	public String getNameFood() {
 		return nameFood;

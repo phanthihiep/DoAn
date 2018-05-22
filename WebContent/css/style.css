@@ -5,6 +5,8 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 /*-- Reset Code --*/
+
+
 body { 
 	padding: 0;
 	margin: 0;
@@ -2432,3 +2434,11 @@ input[type=text], input[type=password] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
+.linkNH {
+    padding: 11px;
+}
+
+.linkName {
+	
+} 

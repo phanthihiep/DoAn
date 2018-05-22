@@ -1,3 +1,5 @@
+<%@page import="model.bean.NhaHang"%>
+<%@page import="model.bean.Memb"%>
 <%@page import="model.bean.Food"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.Member"%>
@@ -6,15 +8,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Restaurant</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords"
-	content="Spicy Bite Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Spicy Bite Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript">
-	
+	<script type="application/x-javascript">
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
@@ -22,26 +21,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		function hideURLbar() {
 			window.scrollTo(0, 1);
 		}
+	</script>
+	<!-- //for-mobile-apps -->
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
 	
-</script>
-<!-- //for-mobile-apps -->
-<link href="css/bootstrap.css" rel="stylesheet" type="text/css"
-	media="all" />
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.0.12/css/all.css"
-	integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9"
-	crossorigin="anonymous">
-<!--about-bottom -->
-<link type="text/css" rel="stylesheet" href="css/cm-overlay.css" />
-<!--about-bottom -->
-<link href="//fonts.googleapis.com/css?family=Yesteryear"
-	rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
-<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i"
-	rel="stylesheet">
-<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!--about-bottom -->
+	<link type="text/css" rel="stylesheet" href="css/cm-overlay.css" />
+	<!--about-bottom -->
+	<link href="//fonts.googleapis.com/css?family=Yesteryear" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
+<%
+	NhaHang nhaHang = (NhaHang)request.getAttribute("nhahang");
+%>
 	<div>
 		<div><br><br>
 			<div class="header-main">
@@ -61,7 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="scroll hvr-underline-from-center"><a
-								href="index.html">Trang chủ</a></li>
+								href="customer.jsp">Trang chủ</a></li>
 							<li><a class="scroll hvr-underline-from-center"
 								href="#about">Thông tin</a></li>
 							<li><a class="scroll hvr-underline-from-center" href="#menu">Menu</a>
@@ -76,8 +73,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								%> <a
 								href="/LogoutServlet" class="fas fa-sign-out-alt"
 																aria-hidden="true"></a> <%
-								 	Member member = (Member) session.getAttribute("user");
-								 %> <i style="color: white;">Xin chào ! <%=member.getMaTV()%></i> <%
+								 	Memb member = (Memb) session.getAttribute("user");
+								 %> <i style="color: white;">Xin chào ! <%=member.getTen()%></i> <%
 								 	}
 								 %>
 							</li>
@@ -104,11 +101,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h3 class="w3layouts-title">
 					<img src="images/menu1.png" class="img-responsive" alt="" />Menu
 					Restaurant
-				</h3>
+					<h4>Mã Nhà Hàng: <%=nhaHang.getId()%></h4><br>
+				 </h3>
 				<div class="text-center">
-					<button type="button" class="btn">
-						<i class="fa fa-plus" aria-hidden="true"> &nbsp Thêm Món Ăn</i>
-					</button>
+						<button type="button" class="btn">
+										
+							<a href="/GetIdNHServlet?IdNH=<%=nhaHang.getId()%>"><i class="fa fa-plus" aria-hidden="true"> &nbsp Thêm Món Ăn</i></a>
+						</button>
+					
 				</div>
 
 				<ul id="myList">
@@ -142,10 +142,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="clearfix"></div>
 											<div class="text-center">
 												<button type="button" class="btn">
-													<i class="fa fa-trash" aria-hidden="true"> &nbsp Xóa</i>
+													<a href="#"><i class="fa fa-trash" aria-hidden="true"> &nbsp Xóa</i></a>
 												</button>
 												<button type="button" class="btn">
-													<i class="fa fa-pencil-square-o" aria-hidden="true"> &nbsp Sửa</i>
+													<a href="/GetIdFoodServlet?id=<%=food.getId() %>"><i class="fa fa-pencil-square" aria-hidden="true"> &nbsp Sửa</i></a>
 												</button>
 											</div>
 										</div>

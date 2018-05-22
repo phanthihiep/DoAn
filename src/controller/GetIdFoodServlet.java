@@ -2,8 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,22 +11,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.Food;
-import model.bean.NhaHang;
-import model.bo.FoodBO;
 import model.dao.FoodDAO;
-import model.dao.Restaurant;
 
 /**
- * Servlet implementation class MenuServlet
+ * Servlet implementation class GetIdFoodServlet
  */
-@WebServlet("/MenuServlet")
-public class MenuServlet extends HttpServlet {
+@WebServlet("/GetIdFoodServlet")
+public class GetIdFoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MenuServlet() {
+    public GetIdFoodServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,18 +33,19 @@ public class MenuServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String idNH= request.getParameter("IdNH");
-		int id = Integer.parseInt(idNH);
+		String idMonAn = request.getParameter("id");
+		int id = Integer.parseInt(idMonAn);
 		FoodDAO foodDAO = new FoodDAO();
-		Restaurant res = new Restaurant();
-		NhaHang nh;
+		Food food;
 		try {
-			nh = res.getNhaHangById(id);
-			request.setAttribute("nhahang", nh);
-			ArrayList<Food> list = foodDAO.getListFood(id);
-			request.setAttribute("listfood", list);
-			request.getRequestDispatcher("/menu.jsp").forward(request, response);
-		} catch (ClassNotFoundException | SQLException e) {
+			food = foodDAO.getFoodById(id);
+			request.setAttribute("food", food);
+			RequestDispatcher rd = request.getRequestDispatcher("editFood.jsp");
+			rd.forward(request, response);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -59,7 +57,7 @@ public class MenuServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		doGet(request, response);
 	}
 
 }
