@@ -3,6 +3,7 @@
 <%@page import="model.bean.Food"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.Member"%>
+<%@page import="model.dao.FoodDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -38,6 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <%
 	NhaHang nhaHang = (NhaHang)request.getAttribute("nhahang");
+	Memb member = (Memb) session.getAttribute("user");
 %>
 	<div>
 		<div><br><br>
@@ -57,46 +59,66 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li class="scroll hvr-underline-from-center"><a
-								href="customer.jsp">Trang chủ</a></li>
-							<li><a class="scroll hvr-underline-from-center"
-								href="#about">Thông tin</a></li>
-							<li><a class="scroll hvr-underline-from-center" href="#menu">Menu</a>
-							</li>
-							<li><a class="scroll hvr-underline-from-center" href="#team">Hình
-									ảnh</a></li>
+							<!-- - customer -->
+							<% if(member.getRoleId()==1){ %>
+								<li class="hvr-underline-from-center">
+									<a href="/TrangChuKHServlet">Trang chủ</a>
+								</li>
+								<li>
+									<a class="scroll hvr-underline-from-center" href="#about">Thông tin</a>
+								</li> 
+								<%} else if(member.getRoleId()==2){ %>
+								<li class="hvr-underline-from-center">
+									<a href="/TrangChuServlet">Trang chủ</a>
+								</li>
+								<li>
+									<a class="hvr-underline-from-center" href="#about">Thông tin</a>
+								</li> 
+								<li>
+									<a class="hvr-underline-from-center" href="/DSDatBanServlet?IdNH=<%=nhaHang.getId()%>">Đặt Bàn</a>
+								</li>
+								<li>
+									<a class="hvr-underline-from-center" href="/MenuServlet?IdNH=<%=nhaHang.getId()%>">Menu</a>
+								</li>
+								<%} %>
 						</ul>
 						<ul class="list-right">
 							<li>
 								<%
 									if (session.getAttribute("user") != null) {
 								%> <a
-								href="/LogoutServlet" class="fas fa-sign-out-alt"
-																aria-hidden="true"></a> <%
-								 	Memb member = (Memb) session.getAttribute("user");
-								 %> <i style="color: white;">Xin chào ! <%=member.getTen()%></i> <%
+								href="/LogoutServlet" class="fas fa-sign-out-alt"aria-hidden="true"></a> 
+									 <i style="color: white;">Xin chào ! <%=member.getTen()%></i> <%
 								 	}
 								 %>
 							</li>
 						</ul>
 					</div>
-
-
 					<div class="clearfix"></div>
 					</nav>
 					<div class="clearfix"></div>
 				</div>
-			</div>
-			<!-- //menu -->
-			<!-- banner -->
-			<div class="clearfix"></div>
+			</div><div class="clearfix"></div>
+		</div>
+	</div><br><br>
+	
+	<%if(member.getRoleId()==1){%>
+	<div class="agile-footer w3ls-section">
+		<div class="container" >
+			<center>
+			 <h4><ul class="nav nav-tabs" >
+			   <li class=" hvr-underline-from-center" style="font-size: 20px; padding-right: 20px;" ><a href="/Index2Servlet?IdNH=<%=nhaHang.getId() %>"><i class="fa fa-home" aria-hidden="true">Chi tiết nhà hàng</i></a></li>
+			   <li class=" hvr-underline-from-center" style="font-size: 20px; padding-right: 20px;"><a href="#"><i class="fa fa-file-image-o" aria-hidden="true">Hình ảnh</i></a></li>
+			   <li class=" hvr-underline-from-center" style="font-size: 20px; padding-right: 20px;"><a href="/MenuServlet?IdNH=<%=nhaHang.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Menu</i> </a></li>
+			 </ul></h4>
+			</center>
 		</div>
 	</div>
-
+	<%} %>
 	<!--menu-->
+	<% if(member.getRoleId()==2){ %>
 	<div class="menu-agileits_w3layouts section">
 		<div class="container">
-
 			<div class="load_more">
 				<h3 class="w3layouts-title">
 					<img src="images/menu1.png" class="img-responsive" alt="" />Menu
@@ -104,13 +126,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h4>Mã Nhà Hàng: <%=nhaHang.getId()%></h4><br>
 				 </h3>
 				<div class="text-center">
-						<button type="button" class="btn">
-										
+						<button type="button" class="btn">	
 							<a href="/GetIdNHServlet?IdNH=<%=nhaHang.getId()%>"><i class="fa fa-plus" aria-hidden="true"> &nbsp Thêm Món Ăn</i></a>
 						</button>
-					
 				</div>
-
 				<ul id="myList">
 					<li>
 						<%
@@ -133,7 +152,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="menu-title">
 												<h4><%=food.getNameFood()%>
 												</h4>
-
 											</div>
 											<div class="menu-price">
 												<h4 class="price-clr"><%=food.getPrice()%>.đ
@@ -141,31 +159,87 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											</div>
 											<div class="clearfix"></div>
 											<div class="text-center">
-												<button type="button" class="btn">
-													<a href="#"><i class="fa fa-trash" aria-hidden="true"> &nbsp Xóa</i></a>
+												 <button type="button" class="delete" id="<%=food.getId()%>" onclick="toConfirm()">
+													<a href="/IdDeleteFoodServlet?id=<%=food.getId() %>" ><i class="fa fa-trash" aria-hidden="true"> &nbsp Xóa</i></a>
 												</button>
-												<button type="button" class="btn">
+												<button type="button" >
 													<a href="/GetIdFoodServlet?id=<%=food.getId() %>"><i class="fa fa-pencil-square" aria-hidden="true"> &nbsp Sửa</i></a>
-												</button>
+												</button> 
+												<script>
+													function toConfirm() {
+														var text;
+														var r = confirm("bạn muốn xóa");
+														if(r==true){
+															FoodDAO f= new FoodDAO();
+															f.deleteFood(id);
+														}else{
+															
+														}
+														
+													}
+													
+												</script>
 											</div>
 										</div>
 										<div class="clearfix"></div>
 									</div>
-
 								</div>
-								<%
-									}
-								%>
+								<%}%>
 								<div class="clearfix"></div>
 							</div>
 						</div>
-
 					</li>
 				</ul>
 			</div>
 		</div>
-
 	</div>
+	<%} else if(member.getRoleId()==1){ %>
+	<div class="menu-agileits_w3layouts section">
+		<div class="container">
+			<div class="load_more">
+				<h3 class="w3layouts-title">
+					<img src="images/menu1.png" class="img-responsive" alt="" />Menu Restaurant
+					<h4>Mã Nhà Hàng: <%=nhaHang.getId()%></h4><br>
+				 </h3>
+				<ul id="myList">
+					<li>
+						<%
+							ArrayList<Food> list = (ArrayList<Food>) request.getAttribute("listfood");
+						%>
+						<div class="l_g">
+							<div class="l_g_r">
+								<%
+									for (int i = 0; i < list.size(); i++) {
+										Food food = list.get(i);
+								%>
+								<div class="col-md-6 menu-grids">
+									<div class="w3l-menu-text">
+										<div class="menu-text-left">
+											<img src="images/<%=food.getPicture()%>" alt=""
+												style="width: 100px; height: 100px" class="img-responsive" />
+										</div>
+										<div class="menu-text-right">
+											<div class="menu-title">
+												<h4><%=food.getNameFood()%></h4>
+											</div>
+											<div class="menu-price">
+												<h4 class="price-clr"><%=food.getPrice()%>.đ</h4>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<%}%>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<%} %>
 	<!--//menu-->
 	<div class="footer-cpy text-center">
 		<div class="social_banner">
@@ -184,6 +258,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</a></li>
 			</ul>
 		</div>
+		
 		<div class="footer-copy">
 			<p>
 				© 2018 Website Restaurant. Please come with us | Design by <a

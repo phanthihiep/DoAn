@@ -40,6 +40,8 @@ public class EditFoodServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FoodDAO foodDAO = new FoodDAO();
+		String idNH = request.getParameter("idNH");
+		int idnh = Integer.parseInt(idNH);
 		String idMonAn = request.getParameter("id");
 		int id = Integer.parseInt(idMonAn);
 		if("submit".equals(request.getParameter("submit"))){
@@ -47,7 +49,7 @@ public class EditFoodServlet extends HttpServlet {
 			String gia = request.getParameter("gia");
 			String hinh = request.getParameter("hinhanh");
 			foodDAO.editFood(id, ten, gia, hinh);
-			response.sendRedirect("MenuServlet");
+			response.sendRedirect("/MenuServlet?IdNH="+idnh);
 		} else {
 			RequestDispatcher rd = request.getRequestDispatcher("editFood.jsp");
 			rd.forward(request, response);

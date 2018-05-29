@@ -55,7 +55,8 @@ public class AddMenuServlet extends HttpServlet {
 				food.setPrice(gia);
 				food.setPicture(hinh);
 				foodDAO.addFood(food);
-				response.sendRedirect("/MenuServlet");
+				response.sendRedirect("/MenuServlet?IdNH="+id1);
+//				request.getRequestDispatcher("/MenuServlet?IdNH="+id1).forward(request, response);
 			} else {
 				RequestDispatcher rd = request.getRequestDispatcher("addMenu.jsp");
 				rd.forward(request, response);

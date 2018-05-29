@@ -79,6 +79,15 @@
   </servlet-mapping>
   
   <servlet>
+    <servlet-name>IdDeleteFoodServlet</servlet-name>
+    <servlet-class>controller.IdDeleteFoodServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IdDeleteFoodServlet</servlet-name>
+    <url-pattern>/IdDeleteFoodServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
     <servlet-name>UpdateInfoServlet</servlet-name>
     <servlet-class>controller.UpdateInfoServlet</servlet-class>
   </servlet>
@@ -86,5 +95,59 @@
     <servlet-name>UpdateInfoServlet</servlet-name>
     <url-pattern>/UpdateInfoServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>TrangChuServLet</servlet-name>
+    <servlet-class>controller.TrangChuServLet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrangChuServLet</servlet-name>
+    <url-pattern>/TrangChuServLet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>TrangChuKHServlet</servlet-name>
+    <servlet-class>controller.TrangChuKHServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrangChuKHServlet</servlet-name>
+    <url-pattern>/TrangChuKHServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Index2Servlet</servlet-name>
+    <servlet-class>controller.Index2Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Index2Servlet</servlet-name>
+    <url-pattern>/Index2Servlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>DatBanServlet</servlet-name>
+    <servlet-class>controller.DatBanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DatBanServlet</servlet-name>
+    <url-pattern>/DatBanServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>DSDatBanServlet</servlet-name>
+    <servlet-class>controller.DSDatBanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DSDatBanServlet</servlet-name>
+    <url-pattern>/DSDatBanServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdminDSMember</servlet-name>
+    <servlet-class>controller.AdminDSMember</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDSMember</servlet-name>
+    <url-pattern>/AdminDSMember</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
 </element>

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.Food;
 import model.bean.InformationRestaurant;
+import model.bean.KhachHang;
 import model.bean.Memb;
 import model.bean.Member;
 import model.bean.NhaHang;
@@ -55,20 +56,25 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("user", member);
 				NhaHang nh= new NhaHang();
 				nh= res.getNhaHangByIdMB(member.getId());
-				session.setAttribute("nhahang",nh );
+				session.setAttribute("nhahang", nh);
 				if (member.getRoleId() == 1) {
 					ArrayList<NhaHang> list = kh.getListNH();
-					request.setAttribute("listMember", list);
+					for(NhaHang n: list){
+						System.out.println(n.getTenNH());
+					}
+					request.setAttribute("listNhaHang", list);
+					KhachHang infoKH = kh.getInfoKH(phone);
+					request.setAttribute("infoKH", infoKH);
+					request.getRequestDispatcher("/customer.jsp").forward(request, response);
 				}else {
 					if (member.getRoleId() == 2) {
 						NhaHang info = res.getInfo(phone);
 						request.setAttribute("info", info);
+						request.getRequestDispatcher("/customer.jsp").forward(request, response);
+					}else if(member.getRoleId() == 3){
+						request.getRequestDispatcher("/adminIndex.jsp").forward(request, response);
 					}
-					
 				}
-				
-				/*member = loginDAO.getRoleID(roleID);*/
-				request.getRequestDispatcher("/customer.jsp").forward(request, response);
 			} else {
 				String error = "Dang nhap that bai";
 				request.setAttribute("error", error);

@@ -59,15 +59,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="collapse navbar-collapse"
 						id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li class="scroll hvr-underline-from-center"><a
-								href="customer.jsp">Trang chủ</a></li>
-							<li><a class="scroll hvr-underline-from-center"
-								href="#about">Thông tin</a></li>
-							<li><a class="scroll hvr-underline-from-center" href="#menu">Menu</a>
-							</li>
-							<li><a class="scroll hvr-underline-from-center" href="#team">Hình
-									ảnh</a></li>
-						</ul>
+							<!-- - customer -->
+								<li class="hvr-underline-from-center">
+									<a href="/TrangChuServlet">Trang chủ</a>
+								</li>
+								<li>
+									<a class="hvr-underline-from-center" href="#">Thông tin</a>
+								</li> 
+								<li>
+									<a class="hvr-underline-from-center" href="#">Đặt Bàn</a>
+								</li>
+								<li>
+									<a class="hvr-underline-from-center" href="/MenuServlet?IdNH=">Menu</a> 
+								</li>
+							</ul>
 						<ul class="list-right">
 							<li>
 							<%
@@ -91,33 +96,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- banner -->
 			<div class="clearfix"></div>
 		</div>
-	</div>	
-		<div class="section w3ls-banner-btm-main" id="about">
+	</div>
+	<div class="section w3ls-banner-btm-main" id="about">
 		<div class="container">
 			<div class="banner-btm">
-				<!-- <div class="col-md-6 banner-btm-g1">
-					<img src="images/about.jpg" class="img-responsive" alt="" />
-				</div> -->
 				<div class="col-md-6 banner-btm-g2">
-					<center><h3 class="title-main">Sửa Thông Tin Món Ăn Trong Menu </h3></center>
-					
+					<center><h3 class="title-main">Sửa Thông Tin Món Ăn Trong Menu </h3></center><br>
 					<form action="EditFoodServlet" method="post">
-					<h4 class="sub-title">Mã Nhà Hàng:<%=food.getIdNH()%> </h4>
-					<h4 class="sub-title">Mã Món Ăn: <input type="text" name="id" value="<%=food.getId()%>" readonly/> </h4> 
+						<div class="row form-group">
+							<label class="col-lg-3"><h4 class="sub-title">Mã Nhà Hàng :</h4></label> 
+							<div class="col-lg-4">	
+								<input type="text" name="idNH" value="<%=food.getIdNH()%>" readonly/>
+							</div>
+						</div> 
+						<div class="row form-group">
+							<label class="col-lg-3"><h4 class="sub-title">Mã Món Ăn :</h4></label>
+							<div class="col-lg-4">	
+								<input type="text" name="id" value="<%=food.getId()%>" readonly/>
+							</div>
+						</div> 
 				        <div class="row form-group">
-				            <label class="col-lg-3" style="color: white;">Tên Món Ăn :</label>
+				            <label class="col-lg-3"><h4 class="sub-title">Tên Món Ăn :</h4></label>
 				            <div class="col-lg-4">
 				                <input type="text" class="form-control" name="ten" value="<%=food.getNameFood()%>" required/>
 				            </div>
 				        </div>
 				        <div class="row form-group">
-				            <label class="col-lg-3" style="color: white;">Giá:</label>
+				            <label class="col-lg-3"><h4 class="sub-title">Giá : </h4></label>
 				            <div class="col-lg-4">
 				                <input type="text" class="form-control" name="gia" value="<%=food.getPrice()%>" required/>
 				            </div>
 				        </div>
 				        <div class="row form-group">
-				            <label class="col-lg-3" style="color: white;">Hình Ảnh:</label>
+				            <label class="col-lg-3"><h4 class="sub-title">Hình Ảnh :</h4></label>
 				            <div class="col-lg-4">
 				                <input type="file" class="form-control" name="hinhanh" value="<%=food.getPicture()%>" required/>
 				            </div>

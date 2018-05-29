@@ -1,3 +1,8 @@
+<%@page import="model.bean.NhaHang"%>
+<%@page import="model.bean.Memb"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.bean.InformationRestaurant"%>
+<%@page import="model.bean.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,7 +25,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<!-- //for-mobile-apps -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
+	
 	<!--about-bottom -->
 	<link type="text/css" rel="stylesheet" href="css/cm-overlay.css" />
 	<!--about-bottom -->
@@ -30,6 +37,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
+<%if(session.getAttribute("user") != null){  
+	Memb member = (Memb) session.getAttribute("user");
+	NhaHang nh = (NhaHang) request.getAttribute("infoNH");
+	%>
 	<div class="agile-banner-main" id="home">
 		<div class="banner-layer">
 			<div class="header-main">
@@ -47,16 +58,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!-- navbar-header -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav navbar-right">
-								
+							<!-- - customer -->
+								<li class="hvr-underline-from-center">
+									<a href="/TrangChuKHServlet">Trang chủ</a>
+								</li>
+								<li>
+									<a class="scroll hvr-underline-from-center" href="#about">Thông tin</a>
+								</li> 
 							</ul>
 							<ul class="list-right">
 								<li>
-									<div class="text-right">
-											<button data-toggle="modal" data-target="#myModal1" > Đăng nhập </button>
-											<button data-toggle="modal" data-target="#myModal2" >Đăng ký</button>
-									</div>
+									<a href="/LogoutServlet" class="fas fa-sign-out-alt" aria-hidden="true"></a>
+								    <i style="color: white;">Xin chào ! <%=member.getTen()%></i>
 								</li>
-								
 							</ul>
 						</div>
 
@@ -72,66 +86,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="banner-top">
 					<div class="banner-info">
 						<h1>
-							<a href="index.html">
+							<a href="#">
 								<img src="images/logo.png" class="img-responsive" alt="" />Spicy Bite</a>
 						</h1>
 						<h2>Tasty experience in every bite!</h2>
-
 						<div class="about-p text-center">
 							<span class="sub-title"></span>
 							<span class="fa fa-cutlery" aria-hidden="true"></span>
 							<span class="sub-title"></span>
 						</div>
-						<p>make your kinda meal
-							<p>
-
+						<p>make your kinda meal<p>
 					</div>
 				</div>
-
 			</div>
-
 			<div class="clearfix"> </div>
 		</div>
+	</div> 	
+	<div class="clearfix"> </div>
+	<div class="agile-footer w3ls-section">
+		<div class="container" >
+			<center>
+			 <h4><ul class="nav nav-tabs" >
+			   <li style="font-size: 22px; padding-right: 20px;" ><a class=" hvr-underline-from-center" href="/Index2Servlet?IdNH=<%=nh.getId() %>"><i class="fa fa-home" aria-hidden="true">Chi tiết nhà hàng</i></a></li>
+			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="#"><i class="fa fa-file-image-o" aria-hidden="true">Hình ảnh</i></a></li>
+			   <li style="font-size: 22px; padding-right: 20px;"><a class="hvr-underline-from-center" href="/MenuServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Menu</i> </a></li>
+			 </ul></h4>
+			</center>
+		</div>
 	</div>
-	
 	<!-- about -->
 	<div class="section w3ls-banner-btm-main" id="about">
 		<div class="container">
 			<div class="banner-btm">
 				<div class="col-md-6 banner-btm-g1">
-					<img src="images/about.jpg" class="img-responsive" alt="" />
+					<img src="images/<%=nh.getHinhanh() %>"  class="img-responsive" alt="" />
 				</div>
 				<div class="col-md-6 banner-btm-g2">
-					<h3 class="title-main">welcome to spicy bite </h3>
-					<h4 class="sub-title">Feel the flavour, feel the aroma, feel the taste in every bite.</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vitae nunc auctor, malesuada est eu, pellentesque nisi.
-						Nam in enim lacinia, hendrerit neque non, placerat quam.Mauris eu tortor congue purus congue iaculis sit amet tincidunt
-						neque. Aliquam suscipit nisi erat, non ultricies ex aliquet a.
-
-					</p>
-					<div class="find-about">
-						<a href="#" data-toggle="modal" data-target="#myModal">Find out more</a>
-					</div>
+					
+					<h3 class="title-main">Nhà Hàng: <%=nh.getTenNH() %></h3>
+					<h4 class="sub-title">Địa Chỉ:</h4>
+					<p><%=nh.getDiaChi() %></p>
+					<h4 class="sub-title">Số Điện Thoại: <%=nh.getSdt() %></h4>
 				</div>
-				<div class="clearfix"></div>
 			</div>
 		</div>
 	</div>
-	
-	<!-- //testimonials -->
-	
 	<div class="menu-agileits_w3layouts section">
 		<div class="container">
-
 			<div class="load_more">
 				<h3 class="w3layouts-title">
-					<img src="images/menu1.png" class="img-responsive" alt="" />Danh Sách Các Nhà Hàng</h3>
-				<div class="text-right">
-					<form class="example" action="#">
-					 <center> <input type="text" placeholder="Tìm kiếm thành phố..." name="search2">
-					  <button type="submit"><i class="fa fa-search"></i></button></center>
-					</form>
-				</div>
+					<img src="images/menu1.png" class="img-responsive" alt="" />Bài Đăng</h3>
 				<ul id="myList">
 					<li>
 						<div class="l_g">
@@ -158,9 +162,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</div>
 										<hr>
 										<div>
-											<button type="button" class="btn"><i class="fa fa-picture-o" aria-hidden="true" >Ảnh/Video</i></button>
-											<button type="button" class="btn"><i class="fa fa-map-marker" aria-hidden="true">Check in</i></button>
-											<button type="button" class="btn"><i class="fa fa-video-camera" aria-hidden="true">Video trực tiếp</i></button>
+											<button type="button" class="btn"><i class="fa fa-picture-o" aria-hidden="true" >&nbsp Ảnh/Video</i></button>
+											<button type="button" class="btn"><i class="fa fa-map-marker" aria-hidden="true">&nbsp Check in</i></button>
+											<button type="button" class="btn"><i class="fa fa-video-camera" aria-hidden="true">&nbsp Video trực tiếp</i></button>
 										</div>
 										<hr>
 										<div class="text-right">
@@ -182,7 +186,93 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 	<!--//menu-->
-	
+	<div class="section">
+		<div class="w3_agileits-subscribe timings text-center">
+			<h4>opening times</h4>
+			<div class="about-p  text-center">
+				<span class="sub-title p1"></span>
+				<span class="fa fa-cutlery" aria-hidden="true"></span>
+				<span class="sub-title p1"></span>
+
+			</div>
+			<div class="time">
+				<h5>Monday – Friday </h5>
+				<p><%=nh.getTgmo() %></p>
+				<h5>Saturday – Sunday </h5>
+				<p><%=nh.getRgdong() %></p>
+			</div>
+		</div>
+	</div>
+	<div class="reservation book-right">
+		<div class="container">
+			<h3 class="w3layouts-title title-reserve">Đặt Bàn Tại Nhà Hàng</h3>
+			<div class="book-left1"></div>
+			<div class="book-right1">
+				<form action="/DatBanServlet" method="post" class="book-right2">
+					
+					<div class="date-field">
+						<label>Họ Tên :</label>
+						<input type="text" name="ten" required="">
+					</div>	
+					<div class="date-field">
+						<label>Ngày Đặt :</label>
+						<input type="text" id="datepicker" name="ngay" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"
+						required="">
+					</div>	
+					<div class="form-left">
+						<label>Số Người :</label>
+						<input type="number" placeholder="số người.." name="nguoi" required="">
+					</div>
+					<div class="form-right">
+						<label>Mã Nhà Hàng:</label>
+						<input type="text"  name="idNH" value="<%=nh.getId()%>" readonly>
+					</div>
+					<div class="form-right">
+						<label>Thời Gian :</label>
+						<input type="time" placeholder="thời gian.." name="tgian" required="">
+					</div>
+					<div class="clearfix"> </div>
+					<div class="phone-info">
+						<label>Số Điện Thoại :</label>
+						<input type="text" placeholder="Số điện thoại.." name="sdt" required="">
+					</div>	
+					<div class="phone-info">
+						<label>Email :</label>
+						<input type="text" placeholder="Email.." name="mail" required="">
+					</div>
+					<input type="submit" onclick="alert('Bạn đã đặt bàn thành công!')" value="Đặt">
+				</form>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div><br><br><br>
+	<div class="contact-bottom" id="contact">
+		<div class="col-md-6  map">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245367.85397730832!2d107.93803751302134!3d16.072093425875124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219c792252a13%3A0x1df0cb4b86727e06!2zxJDDoCBO4bq1bmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1527428398918" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+		<div class="col-md-6 contact-right">
+			<h3 class="title-contact">Đánh giá</h3>
+			<form action="#" method="post">
+				<div class="contact-input">
+					<input type="text" class="name" name="name" placeholder="First Name" required="">
+				</div>	
+				<div class="contact-input">
+					<input type="text" class="name" name="name" placeholder="Last Name" required="">
+				</div>	
+				<div class="contact-input">
+					<input type="email" class="name" name="name" placeholder="Email" required="">
+				</div>
+				<div class="contact-input">
+					<input type="text" class="name" name="name" placeholder="Subject" required="">
+				</div>	
+				<div class="contact-input">
+					<textarea placeholder="Your Message" required=""></textarea>
+				</div>
+					<input type="submit" value="SEND MESSAGE">
+			</form>
+		</div>
+		<div class="clearfix"></div>
+	</div>
 	
 	<div class="footer-cpy text-center">
 		<div class="social_banner">
@@ -215,107 +305,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</p>
 		</div>
 	</div>
-	<!--//footer-->
-
-
-
-	<!-- Tooltip -->
-	<div class="tooltip-content">
-		<div class="modal fade features-modal" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-md">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="modal-title">
-							<img src="images/logo.png" class="img-responsive img1" alt="" />Spicy Bite</h3>
-					</div>
-					<div class="modal-body">
-						<img src="images/modal.jpg" class="img-responsive" alt="image">
-						<h4>Tasty experience in every bite!</h4>
-						<input>Fusce et congue nibh, ut ullamcorper magna. Donec ac massa tincidunt, fringilla sapien vel, tempus massa. Vestibulum
-							felis leo, tincidunt sit amet tristique accumsan. In vitae dapibus metus. Donec nec massa non nulla mattis aliquam
-							egestas et mi.</>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //Tooltip -->
-	
-	
-
-	<!-- Tooltip 2 -->
-	<div class="tooltip-content">
-		<div class="modal fade features-modal" id="myModal1" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-md">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="modal-title">
-							<img src="images/logo.png" class="img-responsive img1" alt="" />Đăng Nhập</h3>
-					</div>
-					<div class="modal-body"> 
-							<center><img src="images/m1.jpg" alt="" class="img-responsive" /></center>
-						<form action="LoginServlet" method="post">
-						    <label for="fname">Tên đăng nhập</label>
-						    <input type="text" id="fname" name="name" placeholder="Tên đăng nhập..">
-						
-						    <label for="lname">Mật khẩu</label>
-						    <input type="password" id="lname" name="pass" placeholder="Mật khẩu..">
-						    <% if(request.getAttribute("error") != null){ %>
-							<b style="color:red"><%=request.getAttribute("error")%></b>
-							<%} %>
-						    <div class="text-center">
-								<button type="submit" class="btn" name="submit" > OK </button>
-							</div><br>
-						 </form>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //Tooltip 2 -->
-	
-	<!-- Tooltip 3 -->
-	<div class="tooltip-content">
-		<div class="modal fade features-modal" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog modal-md">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h3 class="modal-title">
-							<img src="images/logo.png" class="img-responsive img1" alt="" />Đăng Ký</h3>
-					</div>
-					<div class="modal-body"> 
-						<form action="RedetedServlet" method="post">
-						    <label for="fname">Mã Thành Viên</label>
-						    <input type="text" id="fname" name="matv" placeholder="Mã thành viên..">
-						
-						    <label for="lname">Tên Nhà Hàng</label>
-						    <input type="text" id="lname" name="name1" placeholder="Tên nhà hàng..">
-						    <label for="lname">Mật khẩu</label>
-						    <input type="text" id="lname" name="pass1" placeholder="Mật khẩu đăng nhập..">
-						    <label for="fname">Địa chỉ</label>
-						    <input type="text" id="fname" name="diachi" placeholder="Địa chỉ..">
-						    <label for="lname">Số điện thoại</label>
-						    <input type="text" id="lname" name="sdt" placeholder="Mật khẩu..">
-						    <label for="lname">Email</label>
-						    <input type="text" id="lname" name="email" placeholder="Email..">
-						 </form>
-					</div>
-					<div class="text-center">
-						<button type="submit" class="btn" > Đăng ký </button>
-					</div><br>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //Tooltip 3 -->
-	<!-- js -->
+	<%} %>
 	<script src="js/jquery-2.2.3.min.js"></script>
-	<!--/js-->
-	<!-- //gallery -->
 	<script src="js/jquery.tools.min.js"></script>
 	<script src="js/jquery.mobile.custom.min.js"></script>
 	<script src="js/jquery.cm-overlay.js"></script>
@@ -325,8 +316,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$('.cm-overlay').cmOverlay();
 		});
 	</script>
-	<!-- //gallery -->
-	<!--start-date-piker-->
 	<link rel="stylesheet" href="css/jquery-ui.css" />
 	<script src="js/jquery-ui.js"></script>
 	<script>
@@ -348,29 +337,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 		});
 	</script>
-	<!--//end-smooth-scrolling-->
-	<!-- smooth-scrolling-of-move-up  -->
 	<script type="text/javascript">
 		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-			};
-			*/
-
 			$().UItoTop({
 				easingType: 'easeOutQuart'
 			});
-
 		});
 	</script>
-
-
 	<script src="js/SmoothScroll.min.js"></script>
-
 	<script>
 		$(document).ready(function () {
 			size_li = $("#myList li").size();
@@ -386,10 +360,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 		});
 	</script>
-	
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="js/bootstrap.js"></script>
 	
 	<script >

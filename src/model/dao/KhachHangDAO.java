@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import model.bean.Food;
+import model.bean.KhachHang;
 import model.bean.NhaHang;
 
 public class KhachHangDAO {
@@ -58,6 +59,36 @@ public class KhachHangDAO {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public KhachHang getInfoKH(String sdt) {
+		KhachHang info = new KhachHang();
+		connect();
+		String sql = "select * from KhachHang where SDT='" + sdt + "'";
+		Statement stm;
+		try {
+			stm = connection.createStatement();
+			ResultSet rs = stm.executeQuery(sql);
+			while (rs.next()) {
+				info.setId(rs.getInt(1));
+				info.setIdMB(rs.getInt(2));
+				info.setSdt(rs.getString(3));
+				info.setDiachi(rs.getString(4));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return info;
+	}
+	
+	public static void main(String args[]){
+		KhachHangDAO k = new KhachHangDAO();
+		ArrayList<NhaHang> list = k.getListNH();
+		for( NhaHang h : list){
+			System.out.println(h.getTenNH());
+		}
 	}
 	
 }

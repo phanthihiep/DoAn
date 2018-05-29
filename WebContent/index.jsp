@@ -172,7 +172,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						    <label for="lname">Số điện thoại</label>
 						    <input type="text" id="lname" name="sdt" placeholder="Số điện thoại.." required>
 						    <div class="text-center">
-								<button type="submit" class="btn" onclick="alert('Đăng ký thành công')"> Đăng ký </button>
+								<button type="submit" class="btn"> Đăng ký </button>
 							</div><br>
 						 </form>
 					</div>

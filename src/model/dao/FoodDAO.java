@@ -58,9 +58,7 @@ public class FoodDAO {
 		
 		public Food getFoodById(int Id) throws ClassNotFoundException, SQLException {
 			Food f = new Food();
-			// Lay connection
 			connect();
-			// Cau lenh sql kiem tra ten dang nhap va mat khau
 			String sql = "Select * from MonAn where id = '" + Id + "'";
 			Statement stt = connection.createStatement();
 			ResultSet rs = stt.executeQuery(sql);
@@ -71,13 +69,12 @@ public class FoodDAO {
 				f.setPrice(rs.getString(4));
 				f.setPicture(rs.getString(5));
 			}
-
 			return f;
 		}
 		
-		public void deleteFood(int mtv){
+		public void deleteFood(int id){
 			connect();
-			String sql = "delete from Food where MaTV='"+mtv+"'";
+			String sql = "delete from MonAn where id='"+id+"'";
 			try {
 				Statement stm = connection.createStatement();
 				stm.executeQuery(sql);
@@ -90,10 +87,10 @@ public class FoodDAO {
 		
 		public void editFood( int id, String nameFood, String price, String picture){
 			connect();
-			String sql="update from MonAn set TenMonAn=N'"+nameFood+"', Gia='"+price+"', Hinh='"+picture+"' where id='"+id+"'";
+			String sql="update MonAn set TenMonAn=N'"+nameFood+"', Gia='"+price+"', Hinh='"+picture+"' where id='"+id+"'";
 			try {
 				Statement stm = connection.createStatement();
-				stm.executeQuery(sql);
+				stm.executeUpdate(sql);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -112,13 +109,5 @@ public class FoodDAO {
 				e.printStackTrace();
 			}
 		}
-		
-		/*public static void main(String args[]){
-			FoodDAO f = new FoodDAO();
-			ArrayList<Food> l = f.getListFood();
-			for(Food s : l){
-				System.out.println(s.getNameFood());
-			}
-		}*/
 		
 }

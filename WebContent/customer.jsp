@@ -42,10 +42,90 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	NhaHang nh = (NhaHang) session.getAttribute("nhahang");
 	if(member.getRoleId()==2){ %>
 	<div class="agile-banner-main" id="home">
-		<div class="banner-layer"><%}
+		<div class="banner-layer">
+			<div class="header-main">
+				<div class="container">
+					<nav class="navbar navbar-default">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+
+						</div>
+						<!-- navbar-header -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-right">
+							<!-- - customer -->
+								<li class="hvr-underline-from-center">
+									<a href="/TrangChuServlet">Trang chủ</a>
+								</li>
+								<li>
+									<a class="hvr-underline-from-center" href="#about">Thông tin</a>
+								</li> 
+								<li>
+									<a class="hvr-underline-from-center" href="/DSDatBanServlet?IdNH=<%=nh.getId()%>">Đặt Bàn</a>
+								</li>
+								<li>
+									<a class="hvr-underline-from-center" href="/MenuServlet?IdNH=<%=nh.getId()%>">Menu</a>
+								</li>
+							</ul>
+							<ul class="list-right">
+								<li>
+									<a href="/LogoutServlet" class="fas fa-sign-out-alt" aria-hidden="true"></a>
+								    <i style="color: white;">Xin chào ! <%=member.getTen()%></i>
+								</li>
+							</ul>
+						</div>
+
+
+						<div class="clearfix"> </div>
+					</nav>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<!-- //menu -->
+			<!-- banner -->
+			<div class="container">
+				<div class="banner-top">
+					<div class="banner-info">
+						<h1>
+							<a href="#">
+								<img src="images/logo.png" class="img-responsive" alt="" />Spicy Bite</a>
+						</h1>
+						<h2>Tasty experience in every bite!</h2>
+						<div class="about-p text-center">
+							<span class="sub-title"></span>
+							<span class="fa fa-cutlery" aria-hidden="true"></span>
+							<span class="sub-title"></span>
+						</div>
+						<p>make your kinda meal<p>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div> 	
+	<div class="clearfix"> </div>
+<%-- 	<div class="agile-footer w3ls-section">
+		<div class="container" >
+			<center>
+			 <h4><ul class="nav nav-tabs" >
+			   <li style="font-size: 22px; padding-right: 20px;" ><a class=" hvr-underline-from-center" href="/TrangChuServlet"><i class="fa fa-home" aria-hidden="true">Trang chủ</i></a></li>
+			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="#"><i class="fa fa-file-image-o" aria-hidden="true">Thông tin nhà hàng </i></a></li>
+			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="#"><i class="fa fa-file-image-o" aria-hidden="true">Đặt Bàn</i></a></li>
+			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="#"><i class="fa fa-file-image-o" aria-hidden="true">Hình ảnh</i></a></li>
+			   <li style="font-size: 22px; padding-right: 20px;"><a class="hvr-underline-from-center" href="/MenuServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Menu</i> </a></li>
+			 </ul></h4>
+			</center>
+		</div>
+	</div> --%>
+		<%}
 	else if(member.getRoleId()==1){%>
-		<div>
-		<div><br><br><%} %>
+	<div>
+		<div><br><br>
 			<div class="header-main">
 				<div class="container">
 					<nav class="navbar navbar-default">
@@ -62,24 +142,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							
 							<ul class="nav navbar-nav navbar-right">
-							<!-- Restaurant -->
-								 
-								 <%if(member.getRoleId()==2){
-								  %> 
-								<li class="scroll hvr-underline-from-center">
-									<a href="index.html">Trang chủ</a>
-								</li>
-								<li>
-									<a class="scroll hvr-underline-from-center" href="#about">Thông tin</a>
-								</li>
-								<li>
-									<a class="hvr-underline-from-center" href="/MenuServlet?IdNH=<%=nh.getId()%>">Menu</a>
-								</li>
-								<li>
-									<a class="scroll hvr-underline-from-center" href="#team">Hình ảnh</a>
-								</li>
-								 <% }
-								else if(member.getRoleId()==1){%>
 							<!-- - customer -->
 								<li class="scroll hvr-underline-from-center">
 									<a href="index.html">Trang chủ</a>
@@ -87,7 +149,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li>
 									<a class="scroll hvr-underline-from-center" href="#about">Thông tin</a>
 								</li> 
-								<%}%>
 							</ul>
 							
 							
@@ -106,36 +167,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 			</div>
 			<!-- //menu -->
-			<!-- banner -->
-			<%if(member.getRoleId()==2){ %>
-			<div class="container">
-				<div class="banner-top">
-					<div class="banner-info">
-						<h1>
-							<a href="index.html">
-								<img src="images/logo.png" class="img-responsive" alt="" />Spicy Bite</a>
-						</h1>
-						<h2>Tasty experience in every bite!</h2>
-
-						<div class="about-p text-center">
-							<span class="sub-title"></span>
-							<span class="fa fa-cutlery" aria-hidden="true"></span>
-							<span class="sub-title"></span>
-						</div>
-						<p>make your kinda meal<p>
-					</div>
-				</div>
-			</div><%} %>
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-	<%} %>
+	<div class="clearfix"> </div>
+	<%} }%>
 	<!-- about -->
 	<%if(session.getAttribute("user") != null){  
 		 Memb member = (Memb) session.getAttribute("user");
-		 if(member.getRoleId()==1){
-		  %> 
-		<br><div class="section main-menu" id="menu">
+		 if(member.getRoleId()==1){ %> 
+		<br>
+	<div class="section main-menu" id="menu">
 		<div class="container">
 			<div class="main-menu-bg">
 				<h3 class="w3layouts-title text-center">List Restaurants</h3>
@@ -143,7 +185,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ul class="nav nav-tabs" role="tablist">
 						<div >
 						    <form action="/action_page.php">
-						      <input type="text" placeholder="Nhập thành phố.." name="search" style="width: 400px">
+						      <input type="text" placeholder="Nhập thành phố.." name="search" style="width: 300px">
 						      <button type="submit"><i class="fa fa-search"></i></button>
 						    </form>
 						  </div>
@@ -154,55 +196,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div role="tabpanel" class="tab-pane active" id="testi">
 						<div class="col-md-12 agileinfo-tab-content1">
 							<div class="menu-text-right1">
-							<%-- <% ArrayList<Member> list = (ArrayList<Member>) session.getAttribute("listMember");
-								for(int i=0; i< list.size();i++){
-									Member mb = list.get(i);
-							%> --%>
+							<% 
+								ArrayList<NhaHang> list = (ArrayList<NhaHang>) request.getAttribute("listNhaHang");
+								
+							%> 
 								<div class="menu-title">
 									<div class="col-md-12 col-sm-12 col-xs-12 test" >
-										<div class="col-sm-3" >
+									<%for(NhaHang nh: list) { %> 
+										<div class="col-lg-3 col-md-3" >
 											<div class="linkNH" style="padding: 11px">
-												<img src="images/g3.jpg" alt="Image" style="max-width:100%;">
+												<img src="images/<%=nh.getHinhanh() %>" alt="Image" style="max-width:100%; height: 150px">
 												<div class="linkName" style="padding-bottom: 10px">
-												<h4><a><%-- <%=mb.getNameMember() %> --%>hhhhhhhhhhhhhhhhhhh</a> </h4> 
+												<% String id = Integer.toString(nh.getId()); %>
+												<h4><a href="/MenuServlet?IdNH=<%=id %>" ><%=nh.getTenNH()%></a> </h4> 
 												</div>
 											</div>
 										</div>
-										<div class="col-sm-3" >
-											<div class="linkNH" style="padding: 11px">
-												<img src="images/g3.jpg" alt="Image" style="max-width:100%;">
-												<div class="linkName" style="padding-bottom: 10px">
-												<h4><a><%-- <%=mb.getNameMember() %> --%>hhhhhhhhhhhhhhhhhhh</a> </h4> 
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3" >
-											<div class="linkNH" style="padding: 11px">
-												<img src="images/g3.jpg" alt="Image" style="max-width:100%;">
-												<div class="linkName" style="padding-bottom: 10px">
-												<h4><a><%-- <%=mb.getNameMember() %> --%>hhhhhhhhhhhhhhhhhhh</a> </h4> 
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3" >
-											<div class="linkNH" style="padding: 11px">
-												<img src="images/g3.jpg" alt="Image" style="max-width:100%;">
-												<div class="linkName" style="padding-bottom: 10px">
-												<h4><a><%-- <%=mb.getNameMember() %> --%>hhhhhhhhhhhhhhhhhhh</a> </h4> 
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-3" >
-											<div class="linkNH" style="padding: 11px">
-												<img src="images/g3.jpg" alt="Image" style="max-width:100%;">
-												<div class="linkName" style="padding-bottom: 10px">
-												<h4><a><%-- <%=mb.getNameMember() %> --%>hhhhhhhhhhhhhhhhhhh</a> </h4> 
-												</div>
-											</div>
-										</div>
-										
+										<%} %>
 									</div>
-							<%-- <%} %> --%>
 								</div>
 							</div>
 						</div><div class="clearfix"></div>

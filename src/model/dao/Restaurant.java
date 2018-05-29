@@ -5,7 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
+import model.bean.DatBan;
+import model.bean.Food;
 import model.bean.InformationRestaurant;
 import model.bean.KhachHang;
 import model.bean.Memb;
@@ -132,5 +135,69 @@ public class Restaurant {
 		}
 
 		return nh;
+	}
+	
+	public void datBan(DatBan datBan){
+		connect();
+		String sql ="insert into DatBan values('"+datBan.getIdNH()+"', '"+datBan.getTen()+"',"
+				+ " '"+datBan.getNgaydat()+"', '"+datBan.getSonguoi()+"', "
+				+ "'"+datBan.getTgian()+"', '"+datBan.getSdt()+"', '"+datBan.getEmail()+"') ";
+		try {
+			Statement stm = connection.createStatement();
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public DatBan getDatBanByIdNH(int Id) throws ClassNotFoundException, SQLException {
+		DatBan nh = new DatBan();
+		// Lay connection
+		connect();
+		// Cau lenh sql kiem tra ten dang nhap va mat khau
+		String sql = "Select * from DatBan where IdNH = '" + Id + "'";
+		Statement stt = connection.createStatement();
+		ResultSet rs = stt.executeQuery(sql);
+		while (rs.next()) {
+			nh.setId(rs.getInt(1));
+			nh.setIdNH(rs.getInt(2));
+			nh.setTen(rs.getString(3));
+			nh.setNgaydat(rs.getString(4));
+			nh.setSonguoi(rs.getInt(5));
+			nh.setTgian(rs.getString(6));
+			nh.setSdt(rs.getString(7));
+		}
+
+		return nh;
+	}
+	
+	public ArrayList<DatBan> getListDatBan(int IdNH) {
+		connect();
+		String sql=	"SELECT * FROM DatBan where IdNH='"+IdNH+"' ";
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<DatBan> list = new ArrayList<DatBan>();
+		DatBan sanPham;
+		try {
+			while(rs.next()){
+				sanPham = new DatBan();
+				sanPham.setId(rs.getInt(1));
+				sanPham.setIdNH(rs.getInt(2));
+				sanPham.setTen(rs.getString(3));
+				sanPham.setSonguoi(rs.getInt(5));
+				sanPham.setTgian(rs.getString(6));
+				sanPham.setSdt(rs.getString(7));
+				list.add(sanPham);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
