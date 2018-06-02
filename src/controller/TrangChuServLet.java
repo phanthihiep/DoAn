@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,11 +36,17 @@ public class TrangChuServLet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Memb member = new Memb();
 		member = (Memb) session.getAttribute("user");
-		String phone = member.getSdt();
 		Restaurant res = new Restaurant();
-		NhaHang info = res.getInfo(phone);
-		request.setAttribute("info", info);
-		request.getRequestDispatcher("/customer.jsp").forward(request, response);
+		NhaHang info;
+		try {
+			info = res.getNhaHangByIdMB(member.getId());
+			request.setAttribute("info", info);
+			request.getRequestDispatcher("/customer.jsp").forward(request, response);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	
 	}
 

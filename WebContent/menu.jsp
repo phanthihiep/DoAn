@@ -72,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<a href="/TrangChuServlet">Trang chủ</a>
 								</li>
 								<li>
-									<a class="hvr-underline-from-center" href="#about">Thông tin</a>
+									<a class="hvr-underline-from-center" href="/IdNHServlet?IdNH=<%=nhaHang.getId()%>">Thông tin</a>
 								</li> 
 								<li>
 									<a class="hvr-underline-from-center" href="/DSDatBanServlet?IdNH=<%=nhaHang.getId()%>">Đặt Bàn</a>
@@ -190,6 +190,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</li>
 				</ul>
+				<div class="nav-menu text-center">
+					<div id="loadMore">Load more</div>
+					<div id="showLess">Show less</div>
+				</div>
 			</div>
 		</div>
 	</div>

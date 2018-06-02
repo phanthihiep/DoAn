@@ -200,4 +200,35 @@ public class Restaurant {
 		}
 		return list;
 	}
+	
+	public NhaHang getEmailNH(int id) throws SQLException{
+		NhaHang nh = new NhaHang();
+		connect();
+		String sql = "select * from NhaHang where id='"+id+"'";
+		Statement stt = connection.createStatement();
+		ResultSet rs = stt.executeQuery(sql);
+		while (rs.next()) {
+			nh.setId(rs.getInt(1));
+			nh.setEmail(rs.getString(6));
+		}
+		return nh;
+	}
+	
+	public DatBan getEmaiDatBan(int idNH) throws SQLException{
+		DatBan nh = new DatBan();
+		connect();
+		String sql = "select * from DatBan where IdNH='"+idNH+"'";
+		Statement stt = connection.createStatement();
+		ResultSet rs = stt.executeQuery(sql);
+		while (rs.next()) {
+			nh.setId(rs.getInt(2));
+			nh.setEmail(rs.getString(8));
+		}
+		return nh;
+	}
+	
+	public static void main(String args[]) throws SQLException{
+		Restaurant re = new Restaurant();
+		System.out.print(re.getEmaiDatBan(3).getEmail());
+	}
 }

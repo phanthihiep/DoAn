@@ -95,7 +95,8 @@
     <servlet-name>UpdateInfoServlet</servlet-name>
     <url-pattern>/UpdateInfoServlet</url-pattern>
   </servlet-mapping>
-  <servlet>
+  
+   <servlet>
     <servlet-name>TrangChuServLet</servlet-name>
     <servlet-class>controller.TrangChuServLet</servlet-class>
   </servlet>
@@ -146,7 +147,96 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AdminDSMember</servlet-name>
-    <url-pattern>/AdminDSMember</url-pattern>
+   <url-pattern>/AdminDSMember</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AdminDSKhachHang</servlet-name>
+    <servlet-class>controller.AdminDSKhachHang</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDSKhachHang</servlet-name>
+   <url-pattern>/AdminDSKhachHang</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdminDSNhaHang</servlet-name>
+    <servlet-class>controller.AdminDSNhaHang</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminDSNhaHang</servlet-name>
+   <url-pattern>/AdminDSNhaHang</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdminGetIdKH</servlet-name>
+    <servlet-class>controller.AdminGetIdKH</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminGetIdKH</servlet-name>
+   <url-pattern>/AdminGetIdKH</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdminGetIdNH</servlet-name>
+    <servlet-class>controller.AdminGetIdNH</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminGetIdNH</servlet-name>
+   <url-pattern>/AdminGetIdNH</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdminSuaKH</servlet-name>
+    <servlet-class>controller.AdminSuaKH</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminSuaKH</servlet-name>
+   <url-pattern>/AdminSuaKH</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdminSuaNHServlet</servlet-name>
+    <servlet-class>controller.AdminSuaNHServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminSuaNHServlet</servlet-name>
+   <url-pattern>/AdminSuaNHServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdDSdatbanServlet</servlet-name>
+    <servlet-class>controller.AdDSdatbanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdDSdatbanServlet</servlet-name>
+   <url-pattern>/AdDSdatbanServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>IdNHServlet</servlet-name>
+    <servlet-class>controller.IdNHServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IdNHServlet</servlet-name>
+   <url-pattern>/IdNHServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>ThongTinNHServlet</servlet-name>
+    <servlet-class>controller.ThongTinNHServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ThongTinNHServlet</servlet-name>
+   <url-pattern>/ThongTinNHServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AdXoaDBServlet</servlet-name>
+    <servlet-class>controller.AdXoaDBServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdXoaDBServlet</servlet-name>
+   <url-pattern>/AdXoaDBServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>

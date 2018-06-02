@@ -29,6 +29,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 </head>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#txttendangnhap').blur(function(e) {
+			if (validatePhone('txttendangnhap')) {
+				$('#spnPhoneStatus').html(' Nhap sai dinh dang');
+				$('#spnPhoneStatus').css('color', 'green');
+			} else {
+				$('#spnPhoneStatus').html('Invalid');
+				$('#spnPhoneStatus').css('color', 'red');
+			}
+		});
+	});
+
+	function validatePhone(txttendangnhap) {
+		var a = document.getElementById(txttendangnhap).value;
+		var filter = /^\+84[0-9]{7}$/;
+		var filter1=/^091[0-9]{7}$/;
+		var filter2=/^090[0-9]{7}$/;
+		var filter3=/^012[0-9]{8}$/;
+		var filter4=/^016[0-9]{8}$/;
+		if (filter.test(a) || filter1.test(a) || filter2.test(a)|| filter3.test(a) || filter4.test(a) ) { 
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
 <body>
 	<div style="background-image: url('../images/logoo1.jpg');">
 		<div class="banner-layer">
@@ -170,7 +197,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						        <option value="2">Nhà hàng</option>
 						      </select>
 						    <label for="lname">Số điện thoại</label>
-						    <input type="text" id="lname" name="sdt" placeholder="Số điện thoại.." required>
+						    <input type="text" id="lname" name="sdt" placeholder="Số điện thoại.." id='txttendangnhap' required>
+						    <span id="spnPhoneStatus"></span>
 						    <div class="text-center">
 								<button type="submit" class="btn"> Đăng ký </button>
 							</div><br>

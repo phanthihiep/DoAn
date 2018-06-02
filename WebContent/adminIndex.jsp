@@ -1,3 +1,4 @@
+<%@page import="common.StringProcess"%>
 <%@page import="model.dao.Admin"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.bean.Memb"%>
@@ -92,7 +93,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- --------------------------------- -->
 				<div class="outter-wp">
 					<center><h2>Danh sách các thành viên</h2></center>
-					<form action="/AdminDSMember" method="get">
+					<div class="col-lg-2 pull-right">
+		                <a class="btn btn-primary" href="/AdminAddMemberServlet" role="button">Thêm mới</a>
+		            </div>
+					<form >
 						  <table class="table table-striped">
 					            <thead>
 					            <tr>
@@ -108,22 +112,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					            <tbody>
 					             <%
 					            	ArrayList<Memb> list = (ArrayList<Memb>)request.getAttribute("ListMember");
-					             	Admin ad = new Admin();
-					             	for (int i = 0; i < list.size(); i++) {
-					             		Memb mb = list.get(i);
+					            	for(Memb mb:list){
 					            %>
 					            <tr>
-					                <th scope="row"><%=mb.getId() %></th>
-					                <td><%=mb.getTen() %></td>
-					                <td><%=mb.getPass() %></td>
-					                <td><%=mb.getSdt() %></td>
-					                <td><%=ad.getNameRole(mb.getId()) %></td>
+					                <th scope="row" style="color: black;"><%=mb.getId() %></th>
+					                <td style="color: black;"><%=mb.getTen() %></td>
+					                <td style="color: black;"><%=mb.getPass() %></td>
+					                <td style="color: black;"><%=mb.getSdt() %></td>
+					                <td style="color: black;"><%=StringProcess.doiTuong(Integer.toString(mb.getRoleId())) %></td>
 					                <td>
-					                   <a href="#" style="margin-left: 30px;"><i class="fa fa-trash" aria-hidden="true"></i></a>
-					               </td>
+					                    <a href="#"><span class="glyphicon glyphicon-edit"></span></a>
+					                    <a href="#" style="margin-left: 30px;"><span class="glyphicon glyphicon-trash"></span></a>
+					                </td>
 					            </tr>
 					            <%} %>
-					            </tbody>
+					            </tbody> 
 					        </table>
 					</form>
 				</div>
@@ -160,18 +163,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li><a href="index.html"><i class="fa fa-tachometer"></i> <span>Thành viên</span></a></li>
 				<li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Nhà hàng</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 				   <ul id="menu-academico-sub" >
-						<li id="menu-academico-avaliacoes" ><a href="tabs.html"> Danh sách</a></li>
+						<li id="menu-academico-avaliacoes" ><a href="/AdminDSNhaHang"> Danh sách</a></li>
 						<li id="menu-academico-boletim" ><a href="widget.html">Bài đăng</a></li>
 						<li id="menu-academico-avaliacoes" ><a href="calender.html">Menu</a></li>
 			 		</ul>
 				</li>
 				 <li id="menu-academico" ><a href="#"><i class="fa fa-file-text-o"></i> <span>Khách hàng</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 					 <ul id="menu-academico-sub" >
-						<li id="menu-academico-avaliacoes" ><a href="forms.html">Danh sách</a></li>
+						<li id="menu-academico-avaliacoes" ><a href="/AdminDSKhachHang">Danh sách</a></li>
 						<li id="menu-academico-boletim" ><a href="validation.html">Validation Forms</a></li>
 					  </ul>
 				 </li>
-				<li><a href="typography.html"><i class="lnr lnr-pencil"></i> <span>Typography</span></a></li>
+				<li><a href="/AdDSdatbanServlet"><i class="lnr lnr-pencil"></i> <span>Đặt bàn</span></a></li>
 		        <li id="menu-academico" ><a href="#"><i class="lnr lnr-layers"></i> <span>Components</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 					 <ul id="menu-academico-sub" >
 						<li id="menu-academico-avaliacoes" ><a href="grids.html">Grids</a></li>

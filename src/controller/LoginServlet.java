@@ -19,6 +19,7 @@ import model.bean.Member;
 import model.bean.NhaHang;
 import model.bo.FoodBO;
 import model.bo.LoginBO;
+import model.dao.Admin;
 import model.dao.KhachHangDAO;
 import model.dao.LoginDAO;
 import model.dao.Restaurant;
@@ -68,10 +69,14 @@ public class LoginServlet extends HttpServlet {
 					request.getRequestDispatcher("/customer.jsp").forward(request, response);
 				}else {
 					if (member.getRoleId() == 2) {
-						NhaHang info = res.getInfo(phone);
+						NhaHang info = res.getNhaHangByIdMB(member.getId());
 						request.setAttribute("info", info);
+						System.out.println(info.getDiaChi());
 						request.getRequestDispatcher("/customer.jsp").forward(request, response);
 					}else if(member.getRoleId() == 3){
+						Admin ad = new Admin();
+						ArrayList<Memb> list = ad.getListMember();
+						request.setAttribute("ListMember", list);
 						request.getRequestDispatcher("/adminIndex.jsp").forward(request, response);
 					}
 				}

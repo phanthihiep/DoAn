@@ -8,8 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import model.bean.KhachHang;
+import model.bean.Memb;
 import model.bean.NhaHang;
+import model.dao.KhachHangDAO;
 import model.dao.Restaurant;
 
 /**
@@ -32,6 +36,13 @@ public class Index2Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		Memb member = new Memb();
+		member = (Memb) session.getAttribute("user");
+		String phone = member.getSdt();
+		KhachHangDAO kh = new KhachHangDAO();
+		KhachHang infoKH = kh.getInfoKH(phone);
+		request.setAttribute("infoKH", infoKH);
 		String idNH= request.getParameter("IdNH");
 		int id = Integer.parseInt(idNH);
 		Restaurant re = new Restaurant();

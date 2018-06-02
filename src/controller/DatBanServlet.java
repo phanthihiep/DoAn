@@ -1,12 +1,15 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.bean.CreateEmail;
 import model.bean.DatBan;
 import model.dao.Restaurant;
 
@@ -46,6 +49,9 @@ public class DatBanServlet extends HttpServlet {
 		String email = request.getParameter("mail");
 		String ngay = request.getParameter("ngay");
 		Restaurant r = new Restaurant();
+		CreateEmail.sendEmail(email);
+		System.out.println(email);
+		
 		DatBan da = new DatBan();
 		da.setIdNH(idNH);
 		da.setTen(ten);
@@ -55,6 +61,7 @@ public class DatBanServlet extends HttpServlet {
 		da.setSdt(sdt);
 		da.setEmail(email);
 		r.datBan(da);
+		
 		response.sendRedirect("/Index2Servlet?IdNH="+idNH);
 	}
 

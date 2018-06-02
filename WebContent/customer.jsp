@@ -63,7 +63,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<a href="/TrangChuServlet">Trang chủ</a>
 								</li>
 								<li>
-									<a class="hvr-underline-from-center" href="#about">Thông tin</a>
+									<a class="hvr-underline-from-center" href="/IdNHServlet?IdNH=<%=nh.getId()%>">Thông tin</a>
 								</li> 
 								<li>
 									<a class="hvr-underline-from-center" href="/DSDatBanServlet?IdNH=<%=nh.getId()%>">Đặt Bàn</a>
@@ -109,19 +109,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div> 	
 	<div class="clearfix"> </div>
-<%-- 	<div class="agile-footer w3ls-section">
-		<div class="container" >
-			<center>
-			 <h4><ul class="nav nav-tabs" >
-			   <li style="font-size: 22px; padding-right: 20px;" ><a class=" hvr-underline-from-center" href="/TrangChuServlet"><i class="fa fa-home" aria-hidden="true">Trang chủ</i></a></li>
-			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="#"><i class="fa fa-file-image-o" aria-hidden="true">Thông tin nhà hàng </i></a></li>
-			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="#"><i class="fa fa-file-image-o" aria-hidden="true">Đặt Bàn</i></a></li>
-			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="#"><i class="fa fa-file-image-o" aria-hidden="true">Hình ảnh</i></a></li>
-			   <li style="font-size: 22px; padding-right: 20px;"><a class="hvr-underline-from-center" href="/MenuServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Menu</i> </a></li>
-			 </ul></h4>
-			</center>
-		</div>
-	</div> --%>
 		<%}
 	else if(member.getRoleId()==1){%>
 	<div>
@@ -184,8 +171,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="menu-info">
 					<ul class="nav nav-tabs" role="tablist">
 						<div >
-						    <form action="/action_page.php">
-						      <input type="text" placeholder="Nhập thành phố.." name="search" style="width: 300px">
+						    <form action="SerchNHServlet">
+						      <input type="text" placeholder="Nhập thành phố.." name="search" id="search" style="width: 300px">
 						      <button type="submit"><i class="fa fa-search"></i></button>
 						    </form>
 						  </div>
@@ -229,20 +216,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="section w3ls-banner-btm-main" id="about">
 		<div class="container">
 			<div class="banner-btm">
+			 <%if(info.getHinhanh()==null){ %>
 				<div class="col-md-6 banner-btm-g1">
-					<img src="images/about.jpg" class="img-responsive" alt="" />
+					<img src="images/about.jpg"  class="img-responsive" alt="" />
 				</div>
 				<div class="col-md-6 banner-btm-g2">
-					<h3 class="title-main">Tên Nhà Hànd</h3>
-					<h4 class="sub-title">Giới thiệu về nhà hàng.</h4>
-					<%-- <% if(info.getDescribe() != null) { %>
-					<p><%= info.getDescribe() %></p>
-					<% } %> --%>
-					<div class="find-about">
-						<a href="#" data-toggle="modal" data-target="#myModal">Chỉnh sửa thông tin</a>
-					</div>
+					<h3 class="title-main">Nhà Hàng: </h3>
+					<h4 class="sub-title">Địa Chỉ:</h4>
+					<p></p>
+					<h4 class="sub-title">Số Điện Thoại: </h4>
 				</div>
-				<div class="clearfix"></div>
+				<%}else if(info.getHinhanh()!=null){ %> 
+				<div class="col-md-6 banner-btm-g1">
+					<img src="images/<%=info.getHinhanh() %>"  class="img-responsive" alt="" />
+				</div>
+				<div class="col-md-6 banner-btm-g2">
+					<h3 class="title-main">Nhà Hàng: <%=info.getTenNH() %></h3>
+					<h4 class="sub-title">Địa Chỉ:</h4>
+					<p><%=info.getDiaChi() %></p>
+					<h4 class="sub-title">Số Điện Thoại: <%=info.getSdt() %></h4>
+				</div>
+				<%} %> 
 			</div>
 		</div>
 	</div>

@@ -1,3 +1,4 @@
+<%@page import="model.bean.KhachHang"%>
 <%@page import="model.bean.NhaHang"%>
 <%@page import="model.bean.Memb"%>
 <%@page import="java.util.ArrayList"%>
@@ -35,11 +36,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="//fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<style>
+	.checked {
+	    color: orange;
+	}
+</style>
 </head>
 <body>
 <%if(session.getAttribute("user") != null){  
 	Memb member = (Memb) session.getAttribute("user");
 	NhaHang nh = (NhaHang) request.getAttribute("infoNH");
+	KhachHang kh= (KhachHang) request.getAttribute("infoKH");
 	%>
 	<div class="agile-banner-main" id="home">
 		<div class="banner-layer">
@@ -252,19 +259,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="col-md-6 contact-right">
 			<h3 class="title-contact">Đánh giá</h3>
+			<div class="stars">
+			  <form action="">
+			    <span class="fa fa-star checked" ></span>
+				<span class="fa fa-star checked" ></span>
+				<span class="fa fa-star checked" ></span>
+				<span class="fa fa-star" onclick="checked()"></span>
+				<span class="fa fa-star"></span>
+			  </form>
+			</div>
+			<!-- <script>
+			function checked() {
+			    color: orange;
+			}
+			</script> -->
 			<form action="#" method="post">
+				<label>Mã khách hàng - Mã nhà hàng:</label>
 				<div class="contact-input">
-					<input type="text" class="name" name="name" placeholder="First Name" required="">
+					
+					<input type="text" class="name" name="name" value="<%=kh.getId() %>" readonly>
 				</div>	
 				<div class="contact-input">
-					<input type="text" class="name" name="name" placeholder="Last Name" required="">
-				</div>	
-				<div class="contact-input">
-					<input type="email" class="name" name="name" placeholder="Email" required="">
+					<input type="text" class="name" name="name" value="<%=nh.getId() %>" readonly>
 				</div>
+					<label>khách hàng:</label>
 				<div class="contact-input">
-					<input type="text" class="name" name="name" placeholder="Subject" required="">
-				</div>	
+					
+					<input type="text" class="name" name="name" value="<%=member.getTen() %>" readonly>
+				</div>
 				<div class="contact-input">
 					<textarea placeholder="Your Message" required=""></textarea>
 				</div>

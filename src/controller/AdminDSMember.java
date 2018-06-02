@@ -32,6 +32,7 @@ public class AdminDSMember extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("ADMIN DS MEMBER IS CALLED");
 		Admin ad = new Admin();
 		ArrayList<Memb> list = ad.getListMember();
 		for(Memb n: list){

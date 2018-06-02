@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -30,7 +31,7 @@ public class Admin {
 	
 	public ArrayList<Memb> getListMember() {
 		connect();
-		String sql=	"SELECT * FROM Member  ";
+		String sql=	"SELECT * FROM Members  ";
 		ResultSet rs = null;
 		try {
 			Statement stmt = connection.createStatement();
@@ -68,4 +69,132 @@ public class Admin {
 		}
 		return role;
 	}
+	
+	public void editNH( int id, String ten, String sdt, String diachi, String email, String gioithieu, String giomo, String giodong, String hinh){
+		connect();
+		String sql="update NhaHang set TenNH=N'"+ten+"', SDT='"+sdt+"', Diachi='"+diachi+"', Email='"+email+"', Gioithieu='"+gioithieu+"'"
+				+ ", TGmo='"+giomo+"', TGdong='"+giodong+"', HinhAnh='"+hinh+"' where id='"+id+"'";
+		try {
+			Statement stm = connection.createStatement();
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void editKH( int id, int idMB, String sdt, String diachi){
+		connect();
+		String sql="update KhachHang set IdMB='"+idMB+"', SDT='"+sdt+"', Diachi='"+diachi+"' where id='"+id+"'";
+		try {
+			Statement stm = connection.createStatement();
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteMember(int id){
+		connect();
+		String sql = "delete from Members where id='"+id+"'";
+		try {
+			Statement stm = connection.createStatement();
+			stm.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void deleteKH(int id){
+		connect();
+		String sql = "delete from KhachHang where id='"+id+"'";
+		try {
+			Statement stm = connection.createStatement();
+			stm.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void deleteDatBan(int id){
+		connect();
+		String sql = "delete from DatBan where id='"+id+"'";
+		try {
+			Statement stm = connection.createStatement();
+			stm.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void deleteNH(int id){
+		connect();
+		String sql = "delete from NhaHang nh join  where id='"+id+"'";
+		try {
+			Statement stm = connection.createStatement();
+			stm.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public ArrayList<DatBan> getListDatBan() {
+		connect();
+		String sql=	"SELECT * FROM DatBan ";
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<DatBan> list = new ArrayList<DatBan>();
+		DatBan sanPham;
+		try {
+			while(rs.next()){
+				sanPham = new DatBan();
+				sanPham.setId(rs.getInt(1));
+				sanPham.setIdNH(rs.getInt(2));
+				sanPham.setTen(rs.getString(3));
+				sanPham.setSonguoi(rs.getInt(5));
+				sanPham.setTgian(rs.getString(6));
+				sanPham.setSdt(rs.getString(7));
+				list.add(sanPham);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public DatBan getInfoDB(int id) throws ClassNotFoundException, SQLException {
+		DatBan role = new DatBan();
+		connect();
+		String sql = "Select * from DatBan where id = '" + id + "'";
+		Statement stt = connection.createStatement();
+		ResultSet rs = stt.executeQuery(sql);
+		while (rs.next()) {
+			role.setId(rs.getInt("id"));
+			role.setIdNH(rs.getInt("IdNH"));
+			role.setTen(rs.getString("Ten"));
+			role.setSdt(rs.getString("SDT"));
+			role.setEmail(rs.getString("Email"));
+			
+		}
+		return role;
+	}
+	
+	public static void main(String args[]) throws SQLException{
+		Admin re = new Admin();
+	/*	re.deleteMember(20);*/
+	}
+	
 }
