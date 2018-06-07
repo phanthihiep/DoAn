@@ -1,3 +1,4 @@
+<%@page import="model.bean.BaiDang"%>
 <%@page import="model.bean.NhaHang"%>
 <%@page import="model.bean.Memb"%>
 <%@page import="java.util.ArrayList"%>
@@ -35,6 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="//fonts.googleapis.com/css?family=Rancho" rel="stylesheet">
 	<link href="//fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	
 </head>
 <body>
 <%if(session.getAttribute("user") != null){  
@@ -60,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<ul class="nav navbar-nav navbar-right">
 							<!-- - customer -->
 								<li class="hvr-underline-from-center">
-									<a href="/TrangChuServlet">Trang chủ</a>
+									<a href="/TrangChuServLet">Trang chủ</a>
 								</li>
 								<li>
 									<a class="hvr-underline-from-center" href="/IdNHServlet?IdNH=<%=nh.getId()%>">Thông tin</a>
@@ -192,7 +194,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<%for(NhaHang nh: list) { %> 
 										<div class="col-lg-3 col-md-3" >
 											<div class="linkNH" style="padding: 11px">
-												<img src="images/<%=nh.getHinhanh() %>" alt="Image" style="max-width:100%; height: 150px">
+												<img src="uploads/<%=nh.getHinhanh() %>" alt="Image" style="max-width:100%; height: 150px">
 												<div class="linkName" style="padding-bottom: 10px">
 												<% String id = Integer.toString(nh.getId()); %>
 												<h4><a href="/MenuServlet?IdNH=<%=id %>" ><%=nh.getTenNH()%></a> </h4> 
@@ -249,43 +251,77 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h3 class="w3layouts-title">
 					<img src="images/menu1.png" class="img-responsive" alt="" />Bài Đăng</h3>
 				<ul id="myList">
+				<% 
+					ArrayList<BaiDang> list = (ArrayList<BaiDang>) request.getAttribute("ListBD");
+				%> 
 					<li>
 						<div class="l_g">
 							<div class="l_g_r">
+							<form action="DangBaiServlet" method="post" enctype="multipart/form-data">
 								<div class="col-md-12 menu-grids">
 									<div class="w3l-menu-text">
 										<div>
 											<div class="menu-text-left" style="width:auto">
 												<img src="images/m1.jpg" alt="" class="img-responsive" />
-											</div>
-											<div class="menu-text-right">
-												<div class="menu-title">
-													<textarea  style="overflow: hidden !important"  rows="1" placeholder='Bạn muốn viết gì về món ăn'></textarea>
-	
-												</div>
-												<div class="clearfix"></div>
 												
 											</div>
-											<div class="clearfix"> </div>
-										</div><div class="clearfix"> </div><br>
+											<div class="menu-text-right">
+												<h4>Nhà Hàng: <%=info.getTenNH() %></h4>
+												<div class="menu-title">
+													<textarea style="padding: 20px;" name="gioithieu" rows='1' placeholder='Bạn muốn nói gì?'></textarea>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
 										<div>
-											<center><img alt="" src="images/about2.jpg" class="img-responsive"></center>
-													
+											<center><img id="blah" src="#" alt="" class="img-responsive" style="width: 50%; height: 50%;"></center>
 										</div>
 										<hr>
 										<div>
-											<button type="button" class="btn"><i class="fa fa-picture-o" aria-hidden="true" >&nbsp Ảnh/Video</i></button>
+											<input type="file" id="imgInp" name="hinh"/><i class="fa fa-picture-o" aria-hidden="true" >&nbsp Ảnh/Video</i>
 											<button type="button" class="btn"><i class="fa fa-map-marker" aria-hidden="true">&nbsp Check in</i></button>
 											<button type="button" class="btn"><i class="fa fa-video-camera" aria-hidden="true">&nbsp Video trực tiếp</i></button>
+											
 										</div>
 										<hr>
 										<div class="text-right">
 											<button type="button" class="btn" > Hủy </button>
-											<button type="button" class="btn btn-info" >Đăng</button>
+											<button type="submit" class="btn btn-info" name="dangBai"  value="dangbai">Đăng</button>
 										</div>
+										
 									</div>			
 								</div>
+								</form>
 								<div class="clearfix"> </div>
+							<%for(int i=0; i<list.size();i++){
+								BaiDang bd = list.get(i);
+								%>
+								<div class="col-md-12 menu-grids">
+									<div class="w3l-menu-text">
+										<div>
+										<div class="menu-text-left" style="width:auto">
+											<img src="images/m1.jpg" alt="" class="img-responsive" />
+										</div>
+										<div class="menu-text-right">
+											<h4>Nhà Hàng: <%=info.getTenNH() %></h4>
+											<div class="menu-title">
+												<%-- <textarea  style="overflow: hidden !important"  rows="1"  value="<%=bd.getThongtin() %>" ></textarea> --%>
+												<p><%=bd.getThongtin() %></p>
+											</div>
+											<div class="clearfix"></div>
+											
+										</div>
+											<div class="clearfix"> </div>
+										</div><div class="clearfix"> </div><br>
+										<div>
+											<center><img alt="" src="uploads/<%=bd.getHinh() %>" class="img-responsive" style="width: 50%;height: 50%;"></center>
+													
+										</div>	
+										<hr>
+									</div>
+								</div><br><br>
+								<div class="clearfix"> </div>
+								<%} %>
 							</div>
 						</div>
 					</li>
@@ -455,7 +491,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		});
 	</script>
+	<script >
+	function readURL(input) {
 
+		  if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+
+		    reader.onload = function(e) {
+		      $('#blah').attr('src', e.target.result);
+		    }
+
+		    reader.readAsDataURL(input.files[0]);
+		  }
+		}
+
+		$("#imgInp").change(function() {
+		  readURL(this);
+		});
+	</script>
 
 	<script src="js/SmoothScroll.min.js"></script>
 

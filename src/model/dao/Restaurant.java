@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import model.bean.BaiDang;
 import model.bean.DatBan;
 import model.bean.Food;
 import model.bean.InformationRestaurant;
@@ -137,6 +138,66 @@ public class Restaurant {
 		return nh;
 	}
 	
+	public ArrayList<BaiDang> getListBaiDang(int IdNH) {
+		connect();
+		String sql = "Select * from BaiDang where IdNH= '" + IdNH + "' order by id desc";
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<BaiDang> list = new ArrayList<BaiDang>();
+		BaiDang bd;
+		try {
+			while(rs.next()){
+				bd = new BaiDang();
+				bd.setId(rs.getInt(1));
+				bd.setIdNH(rs.getInt(2));
+				bd.setHinh(rs.getString(3));
+				bd.setThongtin(rs.getString(4));
+				list.add(bd);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public BaiDang getBaiDangByIdNH(int IdNH) throws ClassNotFoundException, SQLException {
+		BaiDang bd = new BaiDang();
+		// Lay connection
+		connect();
+		// Cau lenh sql kiem tra ten dang nhap va mat khau
+		String sql = "Select * from BaiDang join NhaHang on BaiDang.IdNH=NhaHang.id join Members"
+				+ "on NhaHang.IdMB=Members.id  where NhaHang.IdMB = '" + IdNH + "'";
+		Statement stt = connection.createStatement();
+		ResultSet rs = stt.executeQuery(sql);
+		while (rs.next()) {
+			bd.setId(rs.getInt(1));
+			bd.setIdNH(rs.getInt(2));
+			bd.setHinh(rs.getString(3));
+			bd.setThongtin(rs.getString(4));
+		}
+
+		return bd;
+	}
+	
+	public void dangbai(BaiDang baidang){
+		connect();
+		String sql ="insert into BaiDang values('"+baidang.getIdNH()+"', '"+baidang.getHinh()+"',"
+				+ " '"+baidang.getThongtin()+"') "; 
+		System.out.println(sql);
+		try {
+			Statement stm = connection.createStatement();
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void datBan(DatBan datBan){
 		connect();
 		String sql ="insert into DatBan values('"+datBan.getIdNH()+"', '"+datBan.getTen()+"',"
@@ -227,8 +288,12 @@ public class Restaurant {
 		return nh;
 	}
 	
-	public static void main(String args[]) throws SQLException{
+	
+	public static void main(String args[]) throws SQLException, ClassNotFoundException{
 		Restaurant re = new Restaurant();
-		System.out.print(re.getEmaiDatBan(3).getEmail());
+		ArrayList<BaiDang> list = re.getListBaiDang(3);
+		for( BaiDang h : list){
+			System.out.println(h.getHinh());
+		}
 	}
 }

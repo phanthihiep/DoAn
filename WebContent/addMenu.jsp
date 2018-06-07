@@ -103,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div> -->
 				<div class="col-md-6 banner-btm-g2">
 					<center><h3 class="title-main">Thêm Món Ăn Vào Menu </h3></center>
-					<form action="AddMenuServlet" method="post">
+					<form action="AddMenuServlet" method="post" enctype="multipart/form-data">
 					
 				        <div class="row form-group">
 				            <label class="col-lg-3"><h4 class="sub-title">Mã Nhà Hàng :</h4></label>

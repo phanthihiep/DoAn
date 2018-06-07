@@ -483,7 +483,7 @@ h3.w3layouts-title img {
     margin-top: 10px;
 }
 .menu-title {
-    float: left;
+    /* float: left; */
 }
 .menu-price {
     float: right;
@@ -2404,18 +2404,18 @@ ul.w3_address li p {
     }
 }
 
-textarea {  
-  /* box-sizing: padding-box; */
+ textarea {  
+  box-sizing: padding-box;
   overflow:hidden !important;
-  /* demo only: */
-  padding:10px;
+  demo only:
+  padding:20px;
   width:800px; 
   font-size:16px;
   margin:20px auto;
   display:block; 
    border-radius:10px; 
   border:6px solid #ffffff;
-}
+} 
 tt{
 	padding:10px;
   width:800px; 

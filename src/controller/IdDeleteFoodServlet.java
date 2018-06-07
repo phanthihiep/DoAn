@@ -36,8 +36,7 @@ public class IdDeleteFoodServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String idMonAn = request.getParameter("id");
-		int id = Integer.parseInt(idMonAn);
+		int id = Integer.parseInt(request.getParameter("id"));
 		FoodDAO foodDAO = new FoodDAO();
 		foodDAO.deleteFood(id);
 	}

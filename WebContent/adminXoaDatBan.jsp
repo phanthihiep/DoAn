@@ -194,11 +194,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 		<div class="menu">
 			<ul id="menu" >
-				<li><a href="index.html"><i class="fa fa-tachometer"></i> <span>Thành viên</span></a></li>
+				<li><a href="/TrangChuAdmin"><i class="fa fa-tachometer"></i> <span>Thành viên</span></a></li>
 				<li id="menu-academico" ><a href="#"><i class="fa fa-table"></i> <span> Nhà hàng</span> <span class="fa fa-angle-right" style="float: right"></span></a>
 				   <ul id="menu-academico-sub" >
 						<li id="menu-academico-avaliacoes" ><a href="tabs.html"> Danh sách</a></li>
-						<li id="menu-academico-boletim" ><a href="widget.html">Bài đăng</a></li>
+						<li id="menu-academico-boletim" ><a href="/AdBaiDangServlet">Bài đăng</a></li>
 						<li id="menu-academico-avaliacoes" ><a href="calender.html">Menu</a></li>
 			 		</ul>
 				</li>

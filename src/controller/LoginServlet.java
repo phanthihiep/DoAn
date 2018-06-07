@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.bean.BaiDang;
 import model.bean.Food;
 import model.bean.InformationRestaurant;
 import model.bean.KhachHang;
@@ -72,6 +73,11 @@ public class LoginServlet extends HttpServlet {
 						NhaHang info = res.getNhaHangByIdMB(member.getId());
 						request.setAttribute("info", info);
 						System.out.println(info.getDiaChi());
+						ArrayList<BaiDang>list = res.getListBaiDang(nh.getId());
+						for(BaiDang n: list){
+							System.out.println(n.getHinh());
+						}
+						request.setAttribute("ListBD", list);
 						request.getRequestDispatcher("/customer.jsp").forward(request, response);
 					}else if(member.getRoleId() == 3){
 						Admin ad = new Admin();

@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.Memb;
 import model.bean.Role;
+import model.dao.Admin;
 import model.dao.LoginDAO;
 import model.dao.Restaurant;
 
@@ -66,13 +68,16 @@ public class AdminAddMemberServlet extends HttpServlet {
 					Restaurant ress= new Restaurant();
 					ress.themKH(memberRegister.getId());
 				}
-				if(role.getId()==1){
-					Memb memberInData = loginDao.getMemberWithPhone(memberRegister);
-					memberRegister.setId(memberInData.getId());
-					Restaurant ress= new Restaurant();
-					ress.themNH(memberRegister.getId());
+				if(role.getId()==2){
+				Memb memberInData = loginDao.getMemberWithPhone(memberRegister);
+				memberRegister.setId(memberInData.getId());
+				Restaurant ress= new Restaurant();
+				ress.themNH(memberRegister.getId());
 				}
-				request.getRequestDispatcher("/adminIndext.jsp").forward(request, response);;
+				Admin ad = new Admin();
+				ArrayList<Memb> list = ad.getListMember();
+				request.setAttribute("ListMember", list);
+				request.getRequestDispatcher("/adminIndex.jsp").forward(request, response);
 			} else {
 				RequestDispatcher rd = request.getRequestDispatcher("adminAddMember.jsp");
 				rd.forward(request, response);

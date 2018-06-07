@@ -119,7 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="outter-wp">
 				<div class="container">
 					<center><h2>Thêm thành viên</h2></center><br>
-					<form action="ThemSinhVienServlet" method="post">
+					<form action="AdminAddMemberServlet" method="post">
 				        <div class="row form-group">
 				            <label class="col-lg-3">Họ tên : </label>
 				            <div class="col-lg-4">

@@ -69,7 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</li> 
 								<%} else if(member.getRoleId()==2){ %>
 								<li class="hvr-underline-from-center">
-									<a href="/TrangChuServlet">Trang chủ</a>
+									<a href="/TrangChuServLet">Trang chủ</a>
 								</li>
 								<li>
 									<a class="hvr-underline-from-center" href="/IdNHServlet?IdNH=<%=nhaHang.getId()%>">Thông tin</a>
@@ -108,7 +108,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<center>
 			 <h4><ul class="nav nav-tabs" >
 			   <li class=" hvr-underline-from-center" style="font-size: 20px; padding-right: 20px;" ><a href="/Index2Servlet?IdNH=<%=nhaHang.getId() %>"><i class="fa fa-home" aria-hidden="true">Chi tiết nhà hàng</i></a></li>
-			   <li class=" hvr-underline-from-center" style="font-size: 20px; padding-right: 20px;"><a href="#"><i class="fa fa-file-image-o" aria-hidden="true">Hình ảnh</i></a></li>
+			   <li class=" hvr-underline-from-center" style="font-size: 20px; padding-right: 20px;"><a href="/HinhAnhServlet?IdNH=<%=nhaHang.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Hình ảnh</i></a></li>
 			   <li class=" hvr-underline-from-center" style="font-size: 20px; padding-right: 20px;"><a href="/MenuServlet?IdNH=<%=nhaHang.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Menu</i> </a></li>
 			 </ul></h4>
 			</center>
@@ -145,7 +145,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 									<div class="w3l-menu-text">
 										<div class="menu-text-left">
-											<img src="images/<%=food.getPicture()%>" alt=""
+											<img src="uploads/<%=food.getPicture()%>" alt=""
 												style="width: 100px; height: 100px" class="img-responsive" />
 										</div>
 										<div class="menu-text-right">
@@ -160,7 +160,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<div class="clearfix"></div>
 											<div class="text-center">
 												 <button type="button" class="delete" id="<%=food.getId()%>" onclick="toConfirm()">
-													<a href="/IdDeleteFoodServlet?id=<%=food.getId() %>" ><i class="fa fa-trash" aria-hidden="true"> &nbsp Xóa</i></a>
+													<a href="#" ><i class="fa fa-trash" aria-hidden="true"> &nbsp Xóa</i></a>
 												</button>
 												<button type="button" >
 													<a href="/GetIdFoodServlet?id=<%=food.getId() %>"><i class="fa fa-pencil-square" aria-hidden="true"> &nbsp Sửa</i></a>
@@ -219,7 +219,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-6 menu-grids">
 									<div class="w3l-menu-text">
 										<div class="menu-text-left">
-											<img src="images/<%=food.getPicture()%>" alt=""
+											<img src="uploads/<%=food.getPicture()%>" alt=""
 												style="width: 100px; height: 100px" class="img-responsive" />
 										</div>
 										<div class="menu-text-right">

@@ -1,3 +1,4 @@
+<%@page import="model.bean.BaiDang"%>
 <%@page import="model.bean.KhachHang"%>
 <%@page import="model.bean.NhaHang"%>
 <%@page import="model.bean.Memb"%>
@@ -115,7 +116,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<center>
 			 <h4><ul class="nav nav-tabs" >
 			   <li style="font-size: 22px; padding-right: 20px;" ><a class=" hvr-underline-from-center" href="/Index2Servlet?IdNH=<%=nh.getId() %>"><i class="fa fa-home" aria-hidden="true">Chi tiết nhà hàng</i></a></li>
-			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="#"><i class="fa fa-file-image-o" aria-hidden="true">Hình ảnh</i></a></li>
+			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="/HinhAnhServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Hình ảnh</i></a></li>
 			   <li style="font-size: 22px; padding-right: 20px;"><a class="hvr-underline-from-center" href="/MenuServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Menu</i> </a></li>
 			 </ul></h4>
 			</center>
@@ -144,43 +145,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h3 class="w3layouts-title">
 					<img src="images/menu1.png" class="img-responsive" alt="" />Bài Đăng</h3>
 				<ul id="myList">
+				<% 
+					ArrayList<BaiDang> list = (ArrayList<BaiDang>) request.getAttribute("ListBD");
+				%> 
 					<li>
 						<div class="l_g">
 							<div class="l_g_r">
+							<%for(int i=0; i<list.size();i++){
+								BaiDang bd = list.get(i);
+								%>
 								<div class="col-md-12 menu-grids">
 									<div class="w3l-menu-text">
 										<div>
-											<div class="menu-text-left" style="width:auto">
-												<img src="images/m1.jpg" alt="" class="img-responsive" />
+										<div class="menu-text-left" style="width:auto">
+											<img src="images/m1.jpg" alt="" class="img-responsive" />
+										</div>
+										<div class="menu-text-right">
+											<h4>Nhà Hàng: <%=nh.getTenNH() %></h4>
+											<div class="menu-title">
+												<%-- <textarea  style="overflow: hidden !important"  rows="1"  value="<%=bd.getThongtin() %>" ></textarea> --%>
+												<p><%=bd.getThongtin() %></p>
 											</div>
-											<div class="menu-text-right">
-												<div class="menu-title">
-													<textarea  style="overflow: hidden !important"  rows="1" placeholder='Bạn muốn viết gì về món ăn'></textarea>
-	
-												</div>
-												<div class="clearfix"></div>
-												
-											</div>
+											<div class="clearfix"></div>
+											
+										</div>
 											<div class="clearfix"> </div>
 										</div><div class="clearfix"> </div><br>
 										<div>
-											<center><img alt="" src="images/about2.jpg" class="img-responsive"></center>
+											<center><img alt="" src="uploads/<%=bd.getHinh() %>" class="img-responsive" style="width: 50%;height: 50%;"></center>
 													
 										</div>
-										<hr>
-										<div>
-											<button type="button" class="btn"><i class="fa fa-picture-o" aria-hidden="true" >&nbsp Ảnh/Video</i></button>
-											<button type="button" class="btn"><i class="fa fa-map-marker" aria-hidden="true">&nbsp Check in</i></button>
-											<button type="button" class="btn"><i class="fa fa-video-camera" aria-hidden="true">&nbsp Video trực tiếp</i></button>
-										</div>
-										<hr>
-										<div class="text-right">
-											<button type="button" class="btn" > Hủy </button>
-											<button type="button" class="btn btn-info" >Đăng</button>
-										</div>
-									</div>			
-								</div>
+										<hr>	
+									</div>
+								</div><br><br>
 								<div class="clearfix"> </div>
+								<%} %>
 							</div>
 						</div>
 					</li>

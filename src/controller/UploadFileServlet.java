@@ -20,6 +20,8 @@ maxRequestSize = 1024 * 1024 * 50) // 50MB
 
 public class UploadFileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final String UPLOAD_DIRECTORY = "F:/D/app/baitapEclip/Restaurant/WebContent/uploads";
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,7 +46,8 @@ public class UploadFileServlet extends HttpServlet {
 		      String fileName = extractFileName(part);
 		      // refines the fileName in case it is an absolute path
 		      fileName = new File(fileName).getName();
-		      part.write(this.getFolderUpload().getAbsolutePath() + File.separator + fileName);
+		      part.write(UPLOAD_DIRECTORY + File.separator + fileName);
+//		      part.write(this.getFolderUpload().getAbsolutePath() + File.separator + fileName);
 		    }
 		    request.setAttribute("message", "Upload File Success!");
 		    getServletContext().getRequestDispatcher("/result.jsp").forward(request, response);
@@ -63,7 +66,7 @@ public class UploadFileServlet extends HttpServlet {
 		    return "";
 		  }
 		  public File getFolderUpload() {
-		    File folderUpload = new File(System.getProperty("Desktop") + "/Uploads");
+		    File folderUpload = new File("Uploads/");
 		    if (!folderUpload.exists()) {
 		      folderUpload.mkdirs();
 		    }

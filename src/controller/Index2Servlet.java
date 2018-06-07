@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.bean.BaiDang;
 import model.bean.KhachHang;
 import model.bean.Memb;
 import model.bean.NhaHang;
@@ -49,6 +51,8 @@ public class Index2Servlet extends HttpServlet {
 		try {
 			NhaHang infoNH= re.getNhaHangById(id);
 			request.setAttribute("infoNH", infoNH);
+			ArrayList<BaiDang>list = re.getListBaiDang(id);
+			request.setAttribute("ListBD", list);
 			request.getRequestDispatcher("/index2.jsp").forward(request, response);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

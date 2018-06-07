@@ -62,7 +62,7 @@ NhaHang nhaHang = (NhaHang)request.getAttribute("nhahang");
 						<ul class="nav navbar-nav navbar-right">
 							<!-- - customer -->
 								<li class="hvr-underline-from-center">
-									<a href="/TrangChuServlet">Trang chủ</a>
+									<a href="/TrangChuServLet">Trang chủ</a>
 								</li>
 								<li>
 									<a class="hvr-underline-from-center" href="/IdNHServlet?IdNH=<%=nhaHang.getId()%>">Thông tin</a>

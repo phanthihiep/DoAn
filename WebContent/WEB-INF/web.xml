@@ -230,6 +230,7 @@
     <servlet-name>ThongTinNHServlet</servlet-name>
    <url-pattern>/ThongTinNHServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>AdXoaDBServlet</servlet-name>
     <servlet-class>controller.AdXoaDBServlet</servlet-class>
@@ -237,6 +238,69 @@
   <servlet-mapping>
     <servlet-name>AdXoaDBServlet</servlet-name>
    <url-pattern>/AdXoaDBServlet</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>DangBaiServlet</servlet-name>
+    <servlet-class>controller.DangBaiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DangBaiServlet</servlet-name>
+   <url-pattern>/DangBaiServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>HinhAnhServlet</servlet-name>
+    <servlet-class>controller.HinhAnhServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HinhAnhServlet</servlet-name>
+   <url-pattern>/HinhAnhServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdBaiDangServlet</servlet-name>
+    <servlet-class>controller.AdBaiDangServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdBaiDangServlet</servlet-name>
+   <url-pattern>/AdBaiDangServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdXoaBaiServlet</servlet-name>
+    <servlet-class>controller.AdXoaBaiServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdXoaBaiServlet</servlet-name>
+   <url-pattern>/AdXoaBaiServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>TrangChuAdmin</servlet-name>
+    <servlet-class>controller.TrangChuAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrangChuAdmin</servlet-name>
+   <url-pattern>/TrangChuAdmin</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdGetIdMB</servlet-name>
+    <servlet-class>controller.AdGetIdMB</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdGetIdMB</servlet-name>
+   <url-pattern>/AdGetIdMB</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>AdSuaMember</servlet-name>
+    <servlet-class>controller.AdSuaMember</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdSuaMember</servlet-name>
+   <url-pattern>/AdSuaMember</url-pattern>
   </servlet-mapping>
   
 </web-app>
