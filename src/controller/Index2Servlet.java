@@ -52,6 +52,9 @@ public class Index2Servlet extends HttpServlet {
 			NhaHang infoNH= re.getNhaHangById(id);
 			request.setAttribute("infoNH", infoNH);
 			ArrayList<BaiDang>list = re.getListBaiDang(id);
+			for(BaiDang b: list){
+				System.out.println("1212: "+b.getThongtin());
+			}
 			request.setAttribute("ListBD", list);
 			request.getRequestDispatcher("/index2.jsp").forward(request, response);
 		} catch (ClassNotFoundException e) {

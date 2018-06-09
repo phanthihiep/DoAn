@@ -62,7 +62,7 @@ public class DatBanServlet extends HttpServlet {
 		da.setEmail(email);
 		r.datBan(da);
 		
-		response.sendRedirect("/Index2Servlet?IdNH="+idNH);
+		response.sendRedirect("/DatBanIDServlet?IdNH="+id);
 	}
 
 }

@@ -2,30 +2,29 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.bean.DatBan;
+import model.bean.Memb;
 import model.bean.NhaHang;
-import model.dao.FoodDAO;
 import model.dao.Restaurant;
 
 /**
- * Servlet implementation class DSDatBanServlet
+ * Servlet implementation class XoaBaiDang
  */
-@WebServlet("/DSDatBanServlet")
-public class DSDatBanServlet extends HttpServlet {
+@WebServlet("/XoaBaiDang")
+public class XoaBaiDang extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DSDatBanServlet() {
+    public XoaBaiDang() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,33 +33,28 @@ public class DSDatBanServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String idNH= request.getParameter("IdNH");
-		int id = Integer.parseInt(idNH);
-		Restaurant res = new Restaurant();
-		NhaHang nh = new NhaHang();
-		try {
-			nh= res.getNhaHangById(id);
-			request.setAttribute("nhahang", nh);
-			ArrayList<DatBan> list = res.getListDatBan(id);
-			for(DatBan d : list){
-				System.out.println(d.getNgaydat());
-			}
-			
-			request.setAttribute("List", list);
-			request.getRequestDispatcher("/datban.jsp").forward(request, response);
-			} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		doPost(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		Memb member = new Memb();
+		member = (Memb) session.getAttribute("user");
+		Restaurant re = new Restaurant();
+		NhaHang nh;
+		try {
+			nh = re.getNhaHangByIdMB(member.getId());
+			int id = Integer.parseInt(request.getParameter("id"));
+			re.deleteBaiDang(id);
+			response.sendRedirect("/TrangChuServLet");
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -98,6 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 <h4><ul class="nav nav-tabs" >
 			   <li class=" hvr-underline-from-center" style="font-size: 20px; padding-right: 20px;" ><a href="/Index2Servlet?IdNH=<%=nh.getId() %>"><i class="fa fa-home" aria-hidden="true">Chi tiết nhà hàng</i></a></li>
 			   <li class=" hvr-underline-from-center" style="font-size: 20px; padding-right: 20px;"><a href="/HinhAnhServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Hình ảnh</i></a></li>
+			   <li class=" hvr-underline-from-center" style="font-size: 22px; padding-right: 20px;"><a href="/DatBanIDServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Đặt bàn</i></a></li>
 			   <li class=" hvr-underline-from-center" style="font-size: 20px; padding-right: 20px;"><a href="/MenuServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Menu</i> </a></li>
 			 </ul></h4>
 			</center>

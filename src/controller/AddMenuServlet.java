@@ -49,24 +49,23 @@ public class AddMenuServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String id1= request.getParameter("Id");
 		int idnh= Integer.parseInt(id1);
 		String tenMonAn= request.getParameter("ten");
 		String gia = request.getParameter("gia");
-		String hinh = request.getParameter("hinhanh");
-		System.out.println(hinh);
 		FoodDAO foodDAO = new FoodDAO();
 			if("submit".equals(request.getParameter("submit"))){
 				Food food = new Food();
 				food.setIdNH(idnh);
 				food.setNameFood(tenMonAn);
 				food.setPrice(gia);
-				food.setPicture(hinh);
-				foodDAO.addFood(food);
 				String fileName_ = "";
 				Part filePart = request.getPart("hinhanh");
 				fileName_ = extractFileName(filePart);
 				filePart.write(UPLOAD_DIRECTORY + File.separator + fileName_);
+				food.setPicture(fileName_);
+				foodDAO.addFood(food);
 				response.sendRedirect("/MenuServlet?IdNH="+id1);
 			} else {
 				RequestDispatcher rd = request.getRequestDispatcher("addMenu.jsp");

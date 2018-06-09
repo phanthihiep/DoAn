@@ -75,9 +75,10 @@ public class FoodDAO {
 		public void deleteFood(int id){
 			connect();
 			String sql = "delete from MonAn where id='"+id+"'";
+			System.out.println(sql);
 			try {
 				Statement stm = connection.createStatement();
-				stm.executeQuery(sql);
+				stm.executeUpdate(sql);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

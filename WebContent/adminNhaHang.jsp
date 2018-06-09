@@ -124,7 +124,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					                <td><%=nh.getRgdong()%></td>
 					                <td>
 					                    <a href="/AdminGetIdNH?id=<%=nh.getId()%>"><span class="glyphicon glyphicon-edit"></span></a>
-					                    <a href="#" style="margin-left: 30px;"><span class="glyphicon glyphicon-trash"></span></a>
 					                </td>
 					            </tr>
 					            <%} %>

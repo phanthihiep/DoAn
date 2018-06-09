@@ -236,6 +236,7 @@ public class Restaurant {
 	public ArrayList<DatBan> getListDatBan(int IdNH) {
 		connect();
 		String sql=	"SELECT * FROM DatBan where IdNH='"+IdNH+"' ";
+		System.out.println(sql);
 		ResultSet rs = null;
 		try {
 			Statement stmt = connection.createStatement();
@@ -251,9 +252,11 @@ public class Restaurant {
 				sanPham.setId(rs.getInt(1));
 				sanPham.setIdNH(rs.getInt(2));
 				sanPham.setTen(rs.getString(3));
+				sanPham.setNgaydat(rs.getString(4));
 				sanPham.setSonguoi(rs.getInt(5));
 				sanPham.setTgian(rs.getString(6));
 				sanPham.setSdt(rs.getString(7));
+				sanPham.setEmail(rs.getString(8));
 				list.add(sanPham);
 			}
 		} catch (SQLException e) {
@@ -288,6 +291,67 @@ public class Restaurant {
 		return nh;
 	}
 	
+	public ArrayList<DatBan> listDatBanSerch(String serchText) {
+		connect();
+		String sql=	"SELECT * FROM DatBan ";
+		if (serchText.length() > 0) {
+			sql += " WHERE Ngaydat like '%" + serchText + "%'";
+		}
+		ResultSet rs = null;
+		try {
+			Statement stmt = connection.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		ArrayList<DatBan> list = new ArrayList<DatBan>();
+		DatBan nh;
+		try {
+			while(rs.next()){
+				nh = new DatBan();
+				nh.setId(rs.getInt(1));
+				nh.setIdNH(rs.getInt(2));
+				nh.setTen(rs.getString(3));
+				nh.setNgaydat(rs.getString(4));
+				nh.setSonguoi(rs.getInt(5));
+				nh.setTgian(rs.getString(6));
+				nh.setSdt(rs.getString(7));
+				nh.setEmail(rs.getString(8));;
+				list.add(nh);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	public void deleteDatBan(int id){
+		connect();
+		String sql = "delete from DatBan where id='"+id+"'";
+		System.out.println(sql);
+		try {
+			Statement stm = connection.createStatement();
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void deleteBaiDang(int id){
+		connect();
+		String sql = "delete from BaiDang where id='"+id+"'";
+		System.out.println(sql);
+		try {
+			Statement stm = connection.createStatement();
+			stm.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public static void main(String args[]) throws SQLException, ClassNotFoundException{
 		Restaurant re = new Restaurant();

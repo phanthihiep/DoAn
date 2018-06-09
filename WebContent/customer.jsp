@@ -9,10 +9,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-16">
 <title>Restaurant</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-16" />
 	<meta name="keywords" content="Spicy Bite Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 	<script type="application/x-javascript">
@@ -95,15 +95,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="banner-info">
 						<h1>
 							<a href="#">
-								<img src="images/logo.png" class="img-responsive" alt="" />Spicy Bite</a>
+								<img src="images/logo.png" class="img-responsive" alt="" />WebSite</a>
 						</h1>
-						<h2>Tasty experience in every bite!</h2>
+						<h2>Hệ thống các nhà hàng!</h2>
 						<div class="about-p text-center">
 							<span class="sub-title"></span>
 							<span class="fa fa-cutlery" aria-hidden="true"></span>
 							<span class="sub-title"></span>
 						</div>
-						<p>make your kinda meal<p>
+						<p>chia sẻ các món ăn<p>
 					</div>
 				</div>
 			</div>
@@ -133,7 +133,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<ul class="nav navbar-nav navbar-right">
 							<!-- - customer -->
 								<li class="scroll hvr-underline-from-center">
-									<a href="index.html">Trang chủ</a>
+									<a href="/TrangChuKHServlet">Trang chủ</a>
 								</li>
 								<li>
 									<a class="scroll hvr-underline-from-center" href="#about">Thông tin</a>
@@ -220,7 +220,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="banner-btm">
 			 <%if(info.getHinhanh()==null){ %>
 				<div class="col-md-6 banner-btm-g1">
-					<img src="images/about.jpg"  class="img-responsive" alt="" />
+					<img src="uploads/about.jpg"  class="img-responsive" alt="" />
 				</div>
 				<div class="col-md-6 banner-btm-g2">
 					<h3 class="title-main">Nhà Hàng: </h3>
@@ -230,7 +230,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<%}else if(info.getHinhanh()!=null){ %> 
 				<div class="col-md-6 banner-btm-g1">
-					<img src="images/<%=info.getHinhanh() %>"  class="img-responsive" alt="" />
+					<img src="uploads/<%=info.getHinhanh() %>"  class="img-responsive" alt="" />
 				</div>
 				<div class="col-md-6 banner-btm-g2">
 					<h3 class="title-main">Nhà Hàng: <%=info.getTenNH() %></h3>
@@ -285,7 +285,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										</div>
 										<hr>
 										<div class="text-right">
-											<button type="button" class="btn" > Hủy </button>
+											<button type="button" class="btn" ><a href="/TrangChuServLet"> Hủy </a></button>
 											<button type="submit" class="btn btn-info" name="dangBai"  value="dangbai">Đăng</button>
 										</div>
 										
@@ -318,6 +318,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 													
 										</div>	
 										<hr>
+										<div class="text-right">
+											<button type="button" class="btn" ><a href="/XoaBaiDang?id=<%=bd.getId()%>"> Xóa </a></button>
+										</div>
 									</div>
 								</div><br><br>
 								<div class="clearfix"> </div>

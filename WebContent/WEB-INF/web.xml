@@ -303,5 +303,41 @@
    <url-pattern>/AdSuaMember</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>DatBanIDServlet</servlet-name>
+    <servlet-class>controller.DatBanIDServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DatBanIDServlet</servlet-name>
+   <url-pattern>/DatBanIDServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>SerchDatBanServlet</servlet-name>
+    <servlet-class>controller.SerchDatBanServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SerchDatBanServlet</servlet-name>
+   <url-pattern>/SerchDatBanServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>IDDeleteDatBan</servlet-name>
+    <servlet-class>controller.IDDeleteDatBan</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IDDeleteDatBan</servlet-name>
+   <url-pattern>/IDDeleteDatBan</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>XoaBaiDang</servlet-name>
+    <servlet-class>controller.XoaBaiDang</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>XoaBaiDang</servlet-name>
+   <url-pattern>/XoaBaiDang</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
 </element>

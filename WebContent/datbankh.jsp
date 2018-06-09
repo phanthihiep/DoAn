@@ -44,13 +44,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </style>
 </head>
 <body>
-<%if(session.getAttribute("user") != null){  
+<% 
 	Memb member = (Memb) session.getAttribute("user");
-	NhaHang nh = (NhaHang) request.getAttribute("infoNH");
+	NhaHang nh = (NhaHang) request.getAttribute("nhahang");
 	KhachHang kh= (KhachHang) request.getAttribute("infoKH");
 	%>
-	<div class="agile-banner-main" id="home">
-		<div class="banner-layer">
+	<div >
+		<div>
 			<div class="header-main">
 				<div class="container">
 					<nav class="navbar navbar-default">
@@ -80,116 +80,127 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								    <i style="color: white;">Xin chào ! <%=member.getTen()%></i>
 								</li>
 							</ul>
-						</div>
-
-
 						<div class="clearfix"> </div>
 					</nav>
 					<div class="clearfix"> </div>
 				</div>
 			</div>
-			<!-- //menu -->
-			<!-- banner -->
-			<div class="container">
-				<div class="banner-top">
-					<div class="banner-info">
-						<h1>
-							<a href="#">
-								<img src="images/logo.png" class="img-responsive" alt="" />Spicy Bite</a>
-						</h1>
-						<h2>Tasty experience in every bite!</h2>
-						<div class="about-p text-center">
-							<span class="sub-title"></span>
-							<span class="fa fa-cutlery" aria-hidden="true"></span>
-							<span class="sub-title"></span>
-						</div>
-						<p>make your kinda meal<p>
-					</div>
-				</div>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div> 	
-	<div class="clearfix"> </div>
+		</div><div class="clearfix"> </div>
+	</div><br><br><br><br>
 	<div class="agile-footer w3ls-section">
 		<div class="container" >
 			<center>
 			 <h4><ul class="nav nav-tabs" >
 			   <li style="font-size: 22px; padding-right: 20px;" ><a class=" hvr-underline-from-center" href="/Index2Servlet?IdNH=<%=nh.getId() %>"><i class="fa fa-home" aria-hidden="true">Chi tiết nhà hàng</i></a></li>
 			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="/HinhAnhServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Hình ảnh</i></a></li>
-			  	<li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="/DatBanIDServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Đặt bàn</i></a></li>
+			   <li style="font-size: 22px; padding-right: 20px;"><a class=" hvr-underline-from-center" href="/HinhAnhServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Đặt bàn</i></a></li>
 			   <li style="font-size: 22px; padding-right: 20px;"><a class="hvr-underline-from-center" href="/MenuServlet?IdNH=<%=nh.getId()%>"><i class="fa fa-file-image-o" aria-hidden="true">Menu</i> </a></li>
 			 </ul></h4>
 			</center>
 		</div>
 	</div>
-	<!-- about -->
-	<div class="section w3ls-banner-btm-main" id="about">
-		<div class="container">
-			<div class="banner-btm">
-				<div class="col-md-6 banner-btm-g1">
-					<img src="uploads/<%=nh.getHinhanh() %>"  class="img-responsive" alt="" />
-				</div>
-				<div class="col-md-6 banner-btm-g2">
-					
-					<h3 class="title-main">Nhà Hàng: <%=nh.getTenNH() %></h3>
-					<h4 class="sub-title">Địa Chỉ:</h4>
-					<p><%=nh.getDiaChi() %></p>
-					<h4 class="sub-title">Số Điện Thoại: <%=nh.getSdt() %></h4>
-				</div>
+	<!--//menu-->
+	<div class="section">
+		<div class="w3_agileits-subscribe timings text-center">
+			<h4>opening times</h4>
+			<div class="about-p  text-center">
+				<span class="sub-title p1"></span>
+				<span class="fa fa-cutlery" aria-hidden="true"></span>
+				<span class="sub-title p1"></span>
+
+			</div>
+			<div class="time">
+				<h5>Monday – Friday </h5>
+				<p><%=nh.getTgmo() %></p>
+				<h5>Saturday – Sunday </h5>
+				<p><%=nh.getRgdong() %></p>
 			</div>
 		</div>
 	</div>
-	<div class="menu-agileits_w3layouts section">
+	<div class="reservation book-right">
 		<div class="container">
-			<div class="load_more">
-				<h3 class="w3layouts-title">
-					<img src="images/menu1.png" class="img-responsive" alt="" />Bài Đăng</h3>
-				<ul id="myList">
-				<% 
-					ArrayList<BaiDang> list = (ArrayList<BaiDang>) request.getAttribute("ListBD");
-				%> 
-					<li>
-						<div class="l_g">
-							<div class="l_g_r">
-							<%for(int i=0; i<list.size();i++){
-								BaiDang bd = list.get(i);
-								%>
-								<div class="col-md-12 menu-grids">
-									<div class="w3l-menu-text">
-										<div>
-										<div class="menu-text-left" style="width:auto">
-											<img src="images/m1.jpg" alt="" class="img-responsive" />
-										</div>
-										<div class="menu-text-right">
-											<h4>Nhà Hàng: <%=nh.getTenNH() %></h4>
-											<div class="menu-title">
-												<p><%=bd.getThongtin() %></p>
-											</div>
-											<div class="clearfix"></div>
-											
-										</div>
-											<div class="clearfix"> </div>
-										</div><div class="clearfix"> </div><br>
-										<div>
-											<center><img alt="" src="uploads/<%=bd.getHinh() %>" class="img-responsive" style="width: 50%;height: 50%;"></center>
-													
-										</div>	
-										<hr>
-									</div>
-								</div><br><br>
-								<div class="clearfix"> </div>
-								<%} %>
-							</div>
-						</div>
-					</li>
-				</ul>
-				<div class="nav-menu text-center">
-					<div id="loadMore">Load more</div>
-					<div id="showLess">Show less</div>
-				</div>
+			<h3 class="w3layouts-title title-reserve">Đặt Bàn Tại Nhà Hàng</h3>
+			<div class="book-left1"></div>
+			<div class="book-right1">
+				<form action="/DatBanServlet" method="post" class="book-right2">
+					
+					<div class="date-field">
+						<label>Họ Tên :</label>
+						<input type="text" name="ten" required="">
+					</div>	
+					<div class="date-field">
+						<label>Ngày Đặt :</label>
+						<input type="text" id="datepicker" name="ngay" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}"
+						required="">
+					</div>	
+					<div class="form-left">
+						<label>Số Người :</label>
+						<input type="number" placeholder="số người.." name="nguoi" required="">
+					</div>
+					<div class="form-right">
+						<label>Mã Nhà Hàng:</label>
+						<input type="text"  name="idNH" value="<%=nh.getId()%>" readonly>
+					</div>
+					<div class="form-right">
+						<label>Thời Gian :</label>
+						<input type="time" placeholder="thời gian.." name="tgian" required="">
+					</div>
+					<div class="clearfix"> </div>
+					<div class="phone-info">
+						<label>Số Điện Thoại :</label>
+						<input type="text" placeholder="Số điện thoại.." name="sdt" required="">
+					</div>	
+					<div class="phone-info">
+						<label>Email :</label>
+						<input type="text" placeholder="Email.." name="mail" required="">
+					</div>
+					<input type="submit" onclick="alert('Bạn đã đặt bàn thành công, vui lòng kiểm tra email!')" value="Đặt">
+				</form>
 			</div>
+			<div class="clearfix"> </div>
 		</div>
+	</div><br><br><br>
+	<div class="contact-bottom" id="contact">
+		<div class="col-md-6  map">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d245367.85397730832!2d107.93803751302134!3d16.072093425875124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219c792252a13%3A0x1df0cb4b86727e06!2zxJDDoCBO4bq1bmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1527428398918" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		</div>
+		<div class="col-md-6 contact-right">
+			<h3 class="title-contact">Đánh giá</h3>
+			<div class="stars">
+			  <form action="">
+			    <span class="fa fa-star checked" ></span>
+				<span class="fa fa-star checked" ></span>
+				<span class="fa fa-star checked" ></span>
+				<span class="fa fa-star" onclick="checked()"></span>
+				<span class="fa fa-star"></span>
+			  </form>
+			</div>
+			<!-- <script>
+			function checked() {
+			    color: orange;
+			}
+			</script> -->
+			<form action="#" method="post">
+				<label>Mã khách hàng - Mã nhà hàng:</label>
+				<div class="contact-input">
+					
+					<input type="text" class="name" name="name" value="<%=kh.getId() %>" readonly>
+				</div>	
+				<div class="contact-input">
+					<input type="text" class="name" name="name" value="<%=nh.getId() %>" readonly>
+				</div>
+					<label>khách hàng:</label>
+				<div class="contact-input">
+					
+					<input type="text" class="name" name="name" value="<%=member.getTen() %>" readonly>
+				</div>
+				<div class="contact-input">
+					<textarea placeholder="Your Message" required=""></textarea>
+				</div>
+					<input type="submit" value="SEND MESSAGE">
+			</form>
+		</div>
+		<div class="clearfix"></div>
 	</div>
 	
 	<div class="footer-cpy text-center">
@@ -223,7 +234,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</p>
 		</div>
 	</div>
-	<%} %>
 	<script src="js/jquery-2.2.3.min.js"></script>
 	<script src="js/jquery.tools.min.js"></script>
 	<script src="js/jquery.mobile.custom.min.js"></script>
@@ -236,11 +246,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<link rel="stylesheet" href="css/jquery-ui.css" />
 	<script src="js/jquery-ui.js"></script>
-<!-- 	<script>
+	<script>
 		$(function () {
 			$("#datepicker,#datepicker1").datepicker();
 		});
-	</script> -->
+	</script>
 	<!-- /End-date-piker -->
 	<script type="text/javascript" src="js/move-top.js"></script>
 	<script type="text/javascript" src="js/easing.js"></script>
@@ -280,7 +290,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</script>
 	<script src="js/bootstrap.js"></script>
 	
-	<script>
+	<script >
 	var textarea = document.querySelector('textarea');
 
 	textarea.addEventListener('keydown', autosize);

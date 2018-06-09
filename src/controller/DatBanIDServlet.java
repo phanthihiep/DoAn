@@ -9,21 +9,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import model.bean.Food;
-import model.dao.FoodDAO;
+import model.bean.KhachHang;
+import model.bean.Memb;
+import model.bean.NhaHang;
+import model.dao.KhachHangDAO;
+import model.dao.Restaurant;
 
 /**
- * Servlet implementation class EditFoodServlet
+ * Servlet implementation class DatBanIDServlet
  */
-@WebServlet("/EditFoodServlet")
-public class EditFoodServlet extends HttpServlet {
+@WebServlet("/DatBanIDServlet")
+public class DatBanIDServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditFoodServlet() {
+    public DatBanIDServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,20 +44,24 @@ public class EditFoodServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		FoodDAO foodDAO = new FoodDAO();
-		String idNH = request.getParameter("idNH");
-		int idnh = Integer.parseInt(idNH);
-		String idMonAn = request.getParameter("id");
-		int id = Integer.parseInt(idMonAn);
-		if("submit".equals(request.getParameter("submit"))){
-			String ten = request.getParameter("ten");
-			String gia = request.getParameter("gia");
-			String hinh = request.getParameter("hinhanh");
-			foodDAO.editFood(id, ten, gia, hinh);
-			response.sendRedirect("/MenuServlet?IdNH="+idnh);
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("editFood.jsp");
+		HttpSession session = request.getSession();
+		Memb member = new Memb();
+		member = (Memb) session.getAttribute("user");
+		String phone = member.getSdt();
+		KhachHangDAO kh = new KhachHangDAO();
+		KhachHang infoKH = kh.getInfoKH(phone);
+		request.setAttribute("infoKH", infoKH);
+		int id = Integer.parseInt(request.getParameter("IdNH"));
+		Restaurant re = new Restaurant();
+		NhaHang nh;
+		try {
+			nh= re.getNhaHangById(id);
+			request.setAttribute("nhahang", nh);
+			RequestDispatcher rd = request.getRequestDispatcher("datbankh.jsp");
 			rd.forward(request, response);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

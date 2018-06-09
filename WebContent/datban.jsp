@@ -92,6 +92,12 @@ NhaHang nhaHang = (NhaHang)request.getAttribute("nhahang");
 			</div>
 		</div>
 	</div><div class="clearfix"></div><br><br>
+	<div class="text-center">
+	    <form class="example" action="SerchDatBanServlet" >
+	      <input type="text" placeholder="Nhập ngày (mm/dd/yyyy) ..." name="search" id="search" style="width: 300px">
+	      <button type="submit"><i class="fa fa-search"></i></button>
+	    </form>
+    </div>
 	<center> <h2>Danh Sách Đặt Bàn Của Nhà Hàng </h2></center>
 	<div class="section w3ls-banner-btm-main" id="about">
 		<div class="container">
@@ -121,7 +127,7 @@ NhaHang nhaHang = (NhaHang)request.getAttribute("nhahang");
                 <td><%=db.getTgian() %></td>
                 <td><%=db.getSdt() %></td>
                 <td>
-                   <a href="#" style="margin-left: 30px;"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                   <a href="/IDDeleteDatBan?id=<%=db.getId() %>" style="margin-left: 30px;"><i class="fa fa-trash" aria-hidden="true"></i></a>
                </td>
             </tr>
             <%} %>

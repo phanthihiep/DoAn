@@ -9,23 +9,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.DatBan;
+import model.bean.KhachHang;
+import model.bean.Memb;
 import model.bean.NhaHang;
-import model.dao.FoodDAO;
+import model.dao.KhachHangDAO;
 import model.dao.Restaurant;
 
 /**
- * Servlet implementation class DSDatBanServlet
+ * Servlet implementation class SerchDatBanServlet
  */
-@WebServlet("/DSDatBanServlet")
-public class DSDatBanServlet extends HttpServlet {
+@WebServlet("/SerchDatBanServlet")
+public class SerchDatBanServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DSDatBanServlet() {
+    public SerchDatBanServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,31 +38,29 @@ public class DSDatBanServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String idNH= request.getParameter("IdNH");
-		int id = Integer.parseInt(idNH);
-		Restaurant res = new Restaurant();
-		NhaHang nh = new NhaHang();
+		HttpSession session = request.getSession();
+		Memb member = new Memb();
+		member = (Memb) session.getAttribute("user");
+		Restaurant re = new Restaurant();
+		ArrayList<DatBan> list = re.listDatBanSerch(request.getParameter("search"));
+		NhaHang nh;
 		try {
-			nh= res.getNhaHangById(id);
+			nh= re.getNhaHangByIdMB(member.getId());
 			request.setAttribute("nhahang", nh);
-			ArrayList<DatBan> list = res.getListDatBan(id);
-			for(DatBan d : list){
-				System.out.println(d.getNgaydat());
-			}
-			
 			request.setAttribute("List", list);
 			request.getRequestDispatcher("/datban.jsp").forward(request, response);
-			} catch (ClassNotFoundException | SQLException e) {
+		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

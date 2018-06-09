@@ -45,6 +45,7 @@ public class RegisterServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String roleId = request.getParameter("role");
 		String name = request.getParameter("name1");
 		String pass = request.getParameter("pass1");
